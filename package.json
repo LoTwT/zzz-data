@@ -1,0 +1,34 @@
+{
+  "name": "zzz-data",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "prepare": "simple-git-hooks",
+    "up": "taze latest -I -f",
+    "prettier": "prettier --write .",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@ayingott/eslint-config": "^2.0.7",
+    "@ayingott/prettier-config": "^2.1.8",
+    "eslint": "^9.36.0",
+    "hono": "latest",
+    "lint-staged": "^16.2.1",
+    "prettier": "^3.6.2",
+    "simple-git-hooks": "^2.13.1",
+    "taze": "^19.7.0",
+    "wrangler": "^4.40.2"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
+  },
+  "lint-staged": {
+    "*": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "prettier": "@ayingott/prettier-config"
+}
