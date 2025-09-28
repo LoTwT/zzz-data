@@ -4,9 +4,20 @@
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "lib": ["ESNext"],
+    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
     "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true
   }
 }
