@@ -29,12 +29,12 @@ async function parseAgents() {
 
   const agents: Agent[] = []
 
-  sheet?.eachRow((row) => {
+  sheet?.eachRow((row, rowNumber) => {
     // 代理人
     const name = row.getCell("A").value as string
     const id = row.getCell("B").value as number
 
-    if (name && id && !excludeIds.includes(id)) {
+    if (name && id && !excludeIds.includes(id) && rowNumber > 1) {
       // name
       const enName = row.getCell("C").value as string
       // 属性
