@@ -1,4 +1,4 @@
-import type { Agent } from "@/types"
+import type { Agent, WEngine } from "@/types"
 import { writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { fileURLToPath } from "node:url"
@@ -11,9 +11,17 @@ const _dirname = fileURLToPath(new URL(".", import.meta.url))
 const workbook = new Workbook()
 
 const agentJsonPath = resolve(_dirname, "../src/data/agents.json")
+const wEngineJsonPath = resolve(_dirname, "../src/data/w-engines.json")
 
 async function parseData() {
   await workbook.xlsx.readFile(resolve(_dirname, "../data.xlsx"))
+
+  const tasks = [processAgents(), processWEngines()]
+
+  await Promise.all(tasks)
+}
+
+async function processAgents() {
   const agents = await parseAgents()
 
   const agentsJson = {
@@ -86,6 +94,46 @@ async function parseAgents() {
   })
 
   return agents
+}
+
+async function processWEngines() {
+  const wEngines = await parseWEngines()
+
+  const wEnginesJson = {
+    wEngines,
+  }
+
+  await writeFile(wEngineJsonPath, `${JSON.stringify(wEnginesJson, null, 2)}\n`)
+}
+
+async function parseWEngines() {
+  const sheet = workbook.getWorksheet("音擎属性")
+
+  const wEngines: WEngine[] = []
+
+  sheet?.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      const name = row.getCell("A").value as string
+      const id = row.getCell("B").value as number
+      const rank = row.getCell("C").value as string
+      const specialty = row.getCell("D").value as string
+      const atk = row.getCell("F").value as number
+      const advancedStat = row.getCell("G").value as string
+      const advancedStatValue = row.getCell("I").value as number
+
+      wEngines.push({
+        name,
+        id,
+        rank,
+        specialty,
+        atk,
+        advancedStat,
+        advancedStatValue,
+      })
+    }
+  })
+
+  return wEngines
 }
 
 parseData()

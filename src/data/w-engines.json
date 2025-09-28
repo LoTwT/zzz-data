@@ -1,0 +1,712 @@
+{
+  "wEngines": [
+    {
+      "name": "机巧心种",
+      "id": 14146,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "铸梦炉歌",
+      "id": 14145,
+      "rank": "S",
+      "specialty": "支援",
+      "atk": 713.76,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "狸法七变化",
+      "id": 14141,
+      "rank": "S",
+      "specialty": "支援",
+      "atk": 713.76,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.6
+    },
+    {
+      "name": "十方锻星",
+      "id": 14140,
+      "rank": "S",
+      "specialty": "异常",
+      "atk": 713.76,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "福虓炉炉",
+      "id": 14139,
+      "rank": "S",
+      "specialty": "击破",
+      "atk": 713.76,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "牺牲洁纯",
+      "id": 14138,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "暴击伤害",
+      "advancedStatValue": 0.48
+    },
+    {
+      "name": "青溟笼舍",
+      "id": 14137,
+      "rank": "S",
+      "specialty": "命破",
+      "atk": 743.5,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "索魂影眸",
+      "id": 14136,
+      "rank": "S",
+      "specialty": "击破",
+      "atk": 713.76,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "飞鸟星梦",
+      "id": 14133,
+      "rank": "S",
+      "specialty": "异常",
+      "atk": 713.76,
+      "advancedStat": "异常精通",
+      "advancedStatValue": 90
+    },
+    {
+      "name": "心弦夜响",
+      "id": 14132,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "玲珑妆匣",
+      "id": 14131,
+      "rank": "S",
+      "specialty": "支援",
+      "atk": 713.76,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "嚣枪喧焰",
+      "id": 14130,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.6
+    },
+    {
+      "name": "千面日陨",
+      "id": 14129,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "淬锋钳刺",
+      "id": 14126,
+      "rank": "S",
+      "specialty": "异常",
+      "atk": 713.76,
+      "advancedStat": "异常精通",
+      "advancedStatValue": 90
+    },
+    {
+      "name": "玉壶青冰",
+      "id": 14125,
+      "rank": "S",
+      "specialty": "击破",
+      "atk": 713.76,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.18
+    },
+    {
+      "name": "防暴者Ⅵ型",
+      "id": 14124,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "暴击伤害",
+      "advancedStatValue": 0.48
+    },
+    {
+      "name": "时流贤者",
+      "id": 14122,
+      "rank": "S",
+      "specialty": "异常",
+      "atk": 713.76,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "啜泣摇篮",
+      "id": 14121,
+      "rank": "S",
+      "specialty": "支援",
+      "atk": 684.02,
+      "advancedStat": "穿透率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "残心青囊",
+      "id": 14120,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "暴击伤害",
+      "advancedStatValue": 0.48
+    },
+    {
+      "name": "深海访客",
+      "id": 14119,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 713.76,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "嵌合编译器",
+      "id": 14118,
+      "rank": "S",
+      "specialty": "异常",
+      "atk": 684.02,
+      "advancedStat": "穿透率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "灼心摇壶",
+      "id": 14117,
+      "rank": "S",
+      "specialty": "异常",
+      "atk": 713.76,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "焰心桂冠",
+      "id": 14116,
+      "rank": "S",
+      "specialty": "击破",
+      "atk": 713.76,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.18
+    },
+    {
+      "name": "拘缚者",
+      "id": 14114,
+      "rank": "S",
+      "specialty": "击破",
+      "atk": 684.02,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.18
+    },
+    {
+      "name": "燃狱齿轮",
+      "id": 14110,
+      "rank": "S",
+      "specialty": "击破",
+      "atk": 684.02,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.18
+    },
+    {
+      "name": "霰落星殿",
+      "id": 14109,
+      "rank": "S",
+      "specialty": "异常",
+      "atk": 743.5,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "奔袭獠牙",
+      "id": 14107,
+      "rank": "S",
+      "specialty": "防护",
+      "atk": 713.76,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.18
+    },
+    {
+      "name": "海妖摇篮",
+      "id": 14105,
+      "rank": "S",
+      "specialty": "命破",
+      "atk": 713.76,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "硫磺石",
+      "id": 14104,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 684.02,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.3
+    },
+    {
+      "name": "钢铁肉垫",
+      "id": 14102,
+      "rank": "S",
+      "specialty": "强攻",
+      "atk": 684.02,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.24
+    },
+    {
+      "name": "左轮转子",
+      "id": 14003,
+      "rank": "A",
+      "specialty": "击破",
+      "atk": 594.8,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.15
+    },
+    {
+      "name": "逍遥游球",
+      "id": 14002,
+      "rank": "A",
+      "specialty": "支援",
+      "atk": 594.8,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.5
+    },
+    {
+      "name": "加农转子",
+      "id": 14001,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 594.8,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "燔火胧夜",
+      "id": 13144,
+      "rank": "A",
+      "specialty": "命破",
+      "atk": 624.54,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "震元奇枢",
+      "id": 13142,
+      "rank": "A",
+      "specialty": "防护",
+      "atk": 624.54,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "裁纸刀",
+      "id": 13135,
+      "rank": "A",
+      "specialty": "击破",
+      "atk": 624.54,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.15
+    },
+    {
+      "name": "轰鸣座驾",
+      "id": 13128,
+      "rank": "A",
+      "specialty": "异常",
+      "atk": 624.54,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "维序者-特化型",
+      "id": 13127,
+      "rank": "A",
+      "specialty": "防护",
+      "atk": 624.54,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "好斗的阿炮",
+      "id": 13115,
+      "rank": "A",
+      "specialty": "支援",
+      "atk": 624.54,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.5
+    },
+    {
+      "name": "含羞恶面",
+      "id": 13113,
+      "rank": "A",
+      "specialty": "支援",
+      "atk": 624.54,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "比格气缸",
+      "id": 13112,
+      "rank": "A",
+      "specialty": "防护",
+      "atk": 624.54,
+      "advancedStat": "防御力",
+      "advancedStatValue": 0.4
+    },
+    {
+      "name": "旋钻机-赤轴",
+      "id": 13111,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 624.54,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.5
+    },
+    {
+      "name": "仿制星徽引擎",
+      "id": 13108,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 624.54,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "家政员",
+      "id": 13106,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 624.54,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "聚宝箱",
+      "id": 13103,
+      "rank": "A",
+      "specialty": "支援",
+      "atk": 624.54,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.5
+    },
+    {
+      "name": "德玛拉电池Ⅱ型",
+      "id": 13101,
+      "rank": "A",
+      "specialty": "击破",
+      "atk": 624.54,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.15
+    },
+    {
+      "name": "光影刻刀",
+      "id": 13016,
+      "rank": "A",
+      "specialty": "防护",
+      "atk": 594.8,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.15
+    },
+    {
+      "name": "强音热望",
+      "id": 13015,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 594.8,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "电波漫步",
+      "id": 13014,
+      "rank": "A",
+      "specialty": "命破",
+      "atk": 594.8,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "鎏金花信",
+      "id": 13013,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 594.8,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "幻变魔方",
+      "id": 13012,
+      "rank": "A",
+      "specialty": "命破",
+      "atk": 594.8,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "春日融融",
+      "id": 13011,
+      "rank": "A",
+      "specialty": "防护",
+      "atk": 594.8,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "兔能环",
+      "id": 13010,
+      "rank": "A",
+      "specialty": "防护",
+      "atk": 594.8,
+      "advancedStat": "防御力",
+      "advancedStatValue": 0.4
+    },
+    {
+      "name": "触电唇彩",
+      "id": 13009,
+      "rank": "A",
+      "specialty": "异常",
+      "atk": 594.8,
+      "advancedStat": "异常精通",
+      "advancedStatValue": 75
+    },
+    {
+      "name": "双生泣星",
+      "id": 13008,
+      "rank": "A",
+      "specialty": "异常",
+      "atk": 594.8,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "正版变身器",
+      "id": 13007,
+      "rank": "A",
+      "specialty": "防护",
+      "atk": 594.8,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "贵重骨核",
+      "id": 13006,
+      "rank": "A",
+      "specialty": "击破",
+      "atk": 594.8,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.15
+    },
+    {
+      "name": "人为刀俎",
+      "id": 13005,
+      "rank": "A",
+      "specialty": "击破",
+      "atk": 594.8,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.5
+    },
+    {
+      "name": "星徽引擎",
+      "id": 13004,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 594.8,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "雨林饕客",
+      "id": 13003,
+      "rank": "A",
+      "specialty": "异常",
+      "atk": 594.8,
+      "advancedStat": "异常精通",
+      "advancedStatValue": 75
+    },
+    {
+      "name": "时光切片",
+      "id": 13002,
+      "rank": "A",
+      "specialty": "支援",
+      "atk": 594.8,
+      "advancedStat": "穿透率",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "街头巨星",
+      "id": 13001,
+      "rank": "A",
+      "specialty": "强攻",
+      "atk": 594.8,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.25
+    },
+    {
+      "name": "「灰烬」-钴蓝",
+      "id": 12015,
+      "rank": "B",
+      "specialty": "命破",
+      "atk": 475.84,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "「恒等式」-变格",
+      "id": 12014,
+      "rank": "B",
+      "specialty": "防护",
+      "atk": 475.84,
+      "advancedStat": "防御力",
+      "advancedStatValue": 0.32
+    },
+    {
+      "name": "「恒等式」-本格",
+      "id": 12013,
+      "rank": "B",
+      "specialty": "防护",
+      "atk": 475.84,
+      "advancedStat": "防御力",
+      "advancedStatValue": 0.32
+    },
+    {
+      "name": "「电磁暴」-叁式",
+      "id": 12012,
+      "rank": "B",
+      "specialty": "异常",
+      "atk": 475.84,
+      "advancedStat": "穿透率",
+      "advancedStatValue": 0.16
+    },
+    {
+      "name": "「电磁暴」-贰式",
+      "id": 12011,
+      "rank": "B",
+      "specialty": "异常",
+      "atk": 475.84,
+      "advancedStat": "异常精通",
+      "advancedStatValue": 60
+    },
+    {
+      "name": "「电磁暴」-壹式",
+      "id": 12010,
+      "rank": "B",
+      "specialty": "异常",
+      "atk": 475.84,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "「湍流」-斧型",
+      "id": 12009,
+      "rank": "B",
+      "specialty": "击破",
+      "atk": 475.84,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.4
+    },
+    {
+      "name": "「湍流」-矢型",
+      "id": 12008,
+      "rank": "B",
+      "specialty": "击破",
+      "atk": 475.84,
+      "advancedStat": "冲击力",
+      "advancedStatValue": 0.12
+    },
+    {
+      "name": "「湍流」-铳型",
+      "id": 12007,
+      "rank": "B",
+      "specialty": "击破",
+      "atk": 475.84,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "「残响」-Ⅲ型",
+      "id": 12006,
+      "rank": "B",
+      "specialty": "支援",
+      "atk": 475.84,
+      "advancedStat": "生命值",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "「残响」-Ⅱ型",
+      "id": 12005,
+      "rank": "B",
+      "specialty": "支援",
+      "atk": 475.84,
+      "advancedStat": "能量自动回复",
+      "advancedStatValue": 0.4
+    },
+    {
+      "name": "「残响」-Ⅰ型",
+      "id": 12004,
+      "rank": "B",
+      "specialty": "支援",
+      "atk": 475.84,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "「月相」-朔",
+      "id": 12003,
+      "rank": "B",
+      "specialty": "强攻",
+      "atk": 475.84,
+      "advancedStat": "暴击率",
+      "advancedStatValue": 0.16
+    },
+    {
+      "name": "「月相」-晦",
+      "id": 12002,
+      "rank": "B",
+      "specialty": "强攻",
+      "atk": 475.84,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "「月相」-望",
+      "id": 12001,
+      "rank": "B",
+      "specialty": "强攻",
+      "atk": 475.84,
+      "advancedStat": "攻击力",
+      "advancedStatValue": 0.2
+    },
+    {
+      "name": "「月相」-望",
+      "id": 12001,
+      "rank": "B",
+      "specialty": "强攻",
+      "atk": {
+        "formula": "=14.87*E79",
+        "result": 475.84
+      },
+      "advancedStat": "攻击力",
+      "advancedStatValue": {
+        "formula": "=2.5*H79",
+        "result": 0.2
+      }
+    }
+  ]
+}
