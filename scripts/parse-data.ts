@@ -1,6 +1,7 @@
 import type { CellFormulaValue, CellValue } from "exceljs"
 import type { Agent, WEngine } from "@/types"
 import type { Bangboo } from "@/types/bangboos"
+import type { DriveDisc } from "@/types/drive-discs"
 import { writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { fileURLToPath } from "node:url"
@@ -15,11 +16,17 @@ const workbook = new Workbook()
 const agentJsonPath = resolve(_dirname, "../src/data/agents.json")
 const wEngineJsonPath = resolve(_dirname, "../src/data/w-engines.json")
 const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
+const driveDiscsJsonPath = resolve(_dirname, "../src/data/drive-discs.json")
 
 async function parseData() {
   await workbook.xlsx.readFile(resolve(_dirname, "../data.xlsx"))
 
-  const tasks = [processAgents(), processWEngines(), processBangboos()]
+  const tasks = [
+    processAgents(),
+    processWEngines(),
+    processBangboos(),
+    processDriveDiscs(),
+  ]
 
   await Promise.all(tasks)
 }
@@ -186,6 +193,45 @@ async function parseBangboos() {
   })
 
   return bangboos
+}
+
+async function processDriveDiscs() {
+  const driveDiscs = await parseDriveDiscs()
+
+  const driveDiscsJson = {
+    driveDiscs,
+  }
+
+  await writeFile(
+    driveDiscsJsonPath,
+    `${JSON.stringify(driveDiscsJson, null, 2)}\n`,
+  )
+}
+
+async function parseDriveDiscs() {
+  const sheet = workbook.getWorksheet("驱动盘描述")
+
+  const driveDiscs: DriveDisc[] = []
+
+  sheet?.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      const id = row.getCell("A").value as number
+      const name = row.getCell("B").value as string
+      const twoPieceBonus = row.getCell("C").value as string
+      const fourPieceBonus = row.getCell("D").value as string
+
+      if (id && name) {
+        driveDiscs.push({
+          id,
+          name,
+          twoPieceBonus: twoPieceBonus || "",
+          fourPieceBonus: fourPieceBonus || "",
+        })
+      }
+    }
+  })
+
+  return driveDiscs
 }
 
 parseData()
