@@ -698,15 +698,9 @@
       "id": 12001,
       "rank": "B",
       "specialty": "强攻",
-      "atk": {
-        "formula": "=14.87*E79",
-        "result": 475.84
-      },
+      "atk": 475.84,
       "advancedStat": "攻击力",
-      "advancedStatValue": {
-        "formula": "=2.5*H79",
-        "result": 0.2
-      }
+      "advancedStatValue": 0.2
     }
   ]
 }

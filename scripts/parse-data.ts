@@ -1,4 +1,6 @@
+import type { CellFormulaValue, CellValue } from "exceljs"
 import type { Agent, WEngine } from "@/types"
+import type { Bangboo } from "@/types/bangboos"
 import { writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { fileURLToPath } from "node:url"
@@ -12,11 +14,12 @@ const workbook = new Workbook()
 
 const agentJsonPath = resolve(_dirname, "../src/data/agents.json")
 const wEngineJsonPath = resolve(_dirname, "../src/data/w-engines.json")
+const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
 
 async function parseData() {
   await workbook.xlsx.readFile(resolve(_dirname, "../data.xlsx"))
 
-  const tasks = [processAgents(), processWEngines()]
+  const tasks = [processAgents(), processWEngines(), processBangboos()]
 
   await Promise.all(tasks)
 }
@@ -117,9 +120,9 @@ async function parseWEngines() {
       const id = row.getCell("B").value as number
       const rank = row.getCell("C").value as string
       const specialty = row.getCell("D").value as string
-      const atk = row.getCell("F").value as number
+      const atk = normalizeNumericValue(row.getCell("F").value)
       const advancedStat = row.getCell("G").value as string
-      const advancedStatValue = row.getCell("I").value as number
+      const advancedStatValue = normalizeNumericValue(row.getCell("I").value)
 
       wEngines.push({
         name,
@@ -136,4 +139,75 @@ async function parseWEngines() {
   return wEngines
 }
 
+async function processBangboos() {
+  const bangboos = await parseBangboos()
+
+  const bangboosJson = {
+    bangboos,
+  }
+
+  await writeFile(
+    bangboosJsonPath,
+    `${JSON.stringify(bangboosJson, null, 2)}\n`,
+  )
+}
+
+async function parseBangboos() {
+  const sheet = workbook.getWorksheet("邦布属性")
+  const excludeIds = [50001, 55001]
+
+  const bangboos: Bangboo[] = []
+
+  sheet?.eachRow((row, rowNumber) => {
+    const id = row.getCell("B").value as number
+
+    if (rowNumber > 1 && !excludeIds.includes(id)) {
+      const name = row.getCell("A").value as string
+      const impact = row.getCell("G").value as number
+      const anomalyMastery = row.getCell("H").value as number
+      const hp = normalizeNumericValue(row.getCell("P").value)
+      const atk = normalizeNumericValue(row.getCell("Q").value)
+      const def = normalizeNumericValue(row.getCell("R").value)
+      const critRate = row.getCell("S").value as number
+      const critDamage = row.getCell("T").value as number
+
+      bangboos.push({
+        name,
+        id,
+        impact,
+        anomalyMastery,
+        hp,
+        atk,
+        def,
+        critRate,
+        critDamage,
+      })
+    }
+  })
+
+  return bangboos
+}
+
 parseData()
+
+function normalizeNumericValue(value: CellValue | undefined): number {
+  if (typeof value === "number") {
+    return value
+  }
+
+  if (
+    value &&
+    typeof value === "object" &&
+    "result" in value &&
+    typeof (value as CellFormulaValue).result === "number"
+  ) {
+    const formulaValue = value as CellFormulaValue
+    const { result } = formulaValue
+
+    if (typeof result === "number") {
+      return result
+    }
+  }
+
+  return 0
+}
