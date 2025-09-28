@@ -1,8 +1,22 @@
 import { Hono } from "hono"
+import { cache } from "hono/cache"
+import { cors } from "hono/cors"
+import { csrf } from "hono/csrf"
+import { trimTrailingSlash } from "hono/trailing-slash"
 import { apis } from "./apis"
 import { fail } from "./utils"
 
 const app = new Hono()
+
+app.use(
+  cors(),
+  csrf(),
+  cache({
+    cacheName: "zzz-data",
+    cacheControl: "max-age=3600",
+  }),
+  trimTrailingSlash(),
+)
 
 app.onError((err, c) => {
   const errStatus = (err as any).status
