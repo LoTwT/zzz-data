@@ -1,4 +1,5 @@
-import { Hono } from "hono"
+import { swaggerUI } from "@hono/swagger-ui"
+import { OpenAPIHono } from "@hono/zod-openapi"
 // import { cache } from "hono/cache"
 import { cors } from "hono/cors"
 import { csrf } from "hono/csrf"
@@ -6,7 +7,7 @@ import { trimTrailingSlash } from "hono/trailing-slash"
 import { apis } from "./apis"
 import { fail } from "./utils"
 
-const app = new Hono()
+const app = new OpenAPIHono()
 
 app.use(
   cors(),
@@ -16,6 +17,21 @@ app.use(
   //   cacheName: "zzz-data",
   //   cacheControl: "max-age=3600",
   // }),
+)
+
+app.doc("/openapi.json", {
+  info: {
+    title: "ZZZ Data API",
+    version: "1.0.0",
+  },
+  openapi: "3.1.0",
+})
+
+app.get(
+  "/docs",
+  swaggerUI({
+    url: "/openapi.json",
+  }),
 )
 
 app.onError((err, c) => {

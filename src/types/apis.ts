@@ -1,5 +1,13 @@
-export interface ApiResponse<T = any> {
-  success: boolean
+export interface ApiResponseSuccess<T> {
+  success: true
   data: T
-  error: string | null
+  error: null
 }
+
+export interface ApiResponseError {
+  success: false
+  data: null
+  error: string
+}
+
+export type ApiResponse<T = unknown> = ApiResponseSuccess<T> | ApiResponseError

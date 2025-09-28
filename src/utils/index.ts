@@ -1,6 +1,6 @@
-import type { ApiResponse } from "@/types/apis"
+import type { ApiResponseError, ApiResponseSuccess } from "@/types/apis"
 
-export function ok<T>(data: T): ApiResponse<T> {
+export function ok<T>(data: T): ApiResponseSuccess<T> {
   return {
     success: true,
     data,
@@ -8,7 +8,7 @@ export function ok<T>(data: T): ApiResponse<T> {
   }
 }
 
-export function fail(message: string): ApiResponse {
+export function fail(message: string): ApiResponseError {
   return {
     success: false,
     data: null,

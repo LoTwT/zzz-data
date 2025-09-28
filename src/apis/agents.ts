@@ -1,10 +1,30 @@
-import { Hono } from "hono"
+import { createRoute, OpenAPIHono } from "@hono/zod-openapi"
+import { AgentsSchema, createSuccessResponseSchema } from "@/schemas"
 import { ok } from "@/utils"
 import agentsJson from "../data/agents.json"
 
-export const agentsApis = new Hono()
+const AgentsResponseSchema =
+  createSuccessResponseSchema(AgentsSchema).openapi("AgentsResponse")
 
-// Get /api/agents
-agentsApis.get("/", (c) => {
+const agentsRoute = createRoute({
+  method: "get",
+  path: "/",
+  summary: "Agents List",
+  tags: ["Agents"],
+  responses: {
+    200: {
+      description: "Agents Response",
+      content: {
+        "application/json": {
+          schema: AgentsResponseSchema,
+        },
+      },
+    },
+  },
+})
+
+export const agentsApis = new OpenAPIHono()
+
+agentsApis.openapi(agentsRoute, (c) => {
   return c.json(ok(agentsJson))
 })
