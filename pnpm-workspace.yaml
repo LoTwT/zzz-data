@@ -1,5 +1,6 @@
 onlyBuiltDependencies:
   - esbuild
+  - puppeteer
   - sharp
   - simple-git-hooks
   - workerd
