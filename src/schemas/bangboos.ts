@@ -12,6 +12,10 @@ export const BangbooSchema = z
     def: z.number(),
     critRate: z.number(),
     critDamage: z.number(),
+    avatar: z.string(),
+    sprite: z.string(),
+    rarity: z.string(),
+    rarityIcon: z.string(),
   })
   .openapi("Bangboo") satisfies z.ZodType<Bangboo>
 

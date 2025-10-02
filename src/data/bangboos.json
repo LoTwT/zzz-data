@@ -9,7 +9,11 @@
       "atk": 8863.4072,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole38.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole38.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "艾丝弥小姐",
@@ -20,7 +24,11 @@
       "atk": 7896.4369,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole37.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole37.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "狮耶",
@@ -31,7 +39,11 @@
       "atk": 8863.4072,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole36.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole36.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "罗宾",
@@ -42,7 +54,11 @@
       "atk": 8621.4161,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole31.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole31.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "咔嚓仔",
@@ -53,7 +69,11 @@
       "atk": 7896.4369,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole30.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole30.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "格列佛探员",
@@ -64,7 +84,11 @@
       "atk": 8380.425,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole28.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole28.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "左轮布",
@@ -75,7 +99,11 @@
       "atk": 8057.0996,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole23.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole23.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "阿崔巡查",
@@ -86,7 +114,11 @@
       "atk": 8863.4072,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole25.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole25.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "赤红莫库斯",
@@ -97,7 +129,11 @@
       "atk": 8863.4072,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole26.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole26.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "共鸣布",
@@ -108,7 +144,11 @@
       "atk": 8057.0996,
       "def": 723.8011,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole20.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole20.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "插头布",
@@ -119,7 +159,11 @@
       "atk": 8057.0996,
       "def": 723.8011,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole19.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole19.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "飚速布",
@@ -130,7 +174,11 @@
       "atk": 8541.0877,
       "def": 723.8011,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole15.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole15.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "艾米莉安",
@@ -141,7 +189,11 @@
       "atk": 8863.4072,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole13.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole13.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "巴特勒",
@@ -152,7 +204,11 @@
       "atk": 7896.4369,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole09.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole09.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "恶魔布",
@@ -163,7 +219,11 @@
       "atk": 6570.2204,
       "def": 723.8011,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole14.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole14.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "阿全",
@@ -174,7 +234,11 @@
       "atk": 8863.4072,
       "def": 666.3389,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole10.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole10.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "鲨牙布",
@@ -185,7 +249,11 @@
       "atk": 8057.0996,
       "def": 723.8011,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole07.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole07.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png"
     },
     {
       "name": "骑士布",
@@ -196,7 +264,11 @@
       "atk": 5825.7808,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole27.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole27.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "圣剑布",
@@ -207,7 +279,11 @@
       "atk": 6447.2646,
       "def": 951.1121,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole39.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole39.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "格斗布",
@@ -218,7 +294,11 @@
       "atk": 6570.2204,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole29.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole29.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "加班布",
@@ -229,7 +309,11 @@
       "atk": 6570.2204,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole32.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole32.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "不良布",
@@ -240,7 +324,11 @@
       "atk": 6570.2204,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole24.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole24.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "气压布",
@@ -251,7 +339,11 @@
       "atk": 5825.7808,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole17.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole17.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "磁力布",
@@ -262,7 +354,11 @@
       "atk": 6570.2204,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole21.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole21.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "电击布",
@@ -273,7 +369,11 @@
       "atk": 6198.0006,
       "def": 723.8011,
       "critRate": 0.05,
-      "critDamage": 0.5
+      "critDamage": 0.5,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole16.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole16.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "飞靶布",
@@ -284,7 +384,11 @@
       "atk": 6570.2204,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole18.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole18.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "果核布",
@@ -295,7 +399,11 @@
       "atk": 5825.7808,
       "def": 781.2633,
       "critRate": 0.05,
-      "critDamage": 0.5
+      "critDamage": 0.5,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole03.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole03.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "泪眼布",
@@ -306,7 +414,11 @@
       "atk": 6198.0006,
       "def": 723.8011,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole02.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole02.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "纸袋布",
@@ -317,7 +429,11 @@
       "atk": 6570.2204,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole01.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole01.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "纸壳布",
@@ -328,7 +444,11 @@
       "atk": 5825.7808,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole04.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole04.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "扑击布",
@@ -339,7 +459,11 @@
       "atk": 5825.7808,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole05.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole05.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "寻宝布",
@@ -350,7 +474,11 @@
       "atk": 6074.2587,
       "def": 666.3389,
       "critRate": 0.05,
-      "critDamage": 0.5
+      "critDamage": 0.5,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole06.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole06.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "招财布",
@@ -361,7 +489,11 @@
       "atk": 6198.0006,
       "def": 781.2633,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole11.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole11.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     },
     {
       "name": "企鹅布",
@@ -372,7 +504,11 @@
       "atk": 6198.0006,
       "def": 723.8011,
       "critRate": 0.5,
-      "critDamage": 1
+      "critDamage": 1,
+      "avatar": "https://api.hakush.in/zzz/UI/BangbooGarageRole12.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/BangbooGarageRole12.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png"
     }
   ]
 }

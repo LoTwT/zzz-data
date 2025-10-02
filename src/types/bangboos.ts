@@ -8,4 +8,9 @@ export interface Bangboo {
   def: number
   critRate: number
   critDamage: number
+
+  avatar: string
+  sprite: string
+  rarity: string
+  rarityIcon: string
 }

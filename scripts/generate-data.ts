@@ -19,6 +19,10 @@ const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
 const driveDiscsJsonPath = resolve(_dirname, "../src/data/drive-discs.json")
 
 const hakushAgentJsonPath = resolve(_dirname, "../src/data/hakush/agents.json")
+const hakushBangbooJsonPath = resolve(
+  _dirname,
+  "../src/data/hakush/bangboos.json",
+)
 const hakushCommonJsonPath = resolve(_dirname, "../src/data/hakush/common.json")
 
 const attributeKeyMap: Record<string, string> = {
@@ -251,6 +255,16 @@ async function parseBangboos() {
   const excludeIds = [50001, 55001]
 
   const bangboos: Bangboo[] = []
+  const hakushBangboosRaw = await readFile(hakushBangbooJsonPath, "utf-8")
+  const hakushBangboos = JSON.parse(hakushBangboosRaw) as Record<
+    string,
+    {
+      avatar: string
+      sprite: string
+      rarity: string
+    }
+  >
+  const hakushCommonData = await getHakushCommonData()
 
   sheet?.eachRow((row, rowNumber) => {
     const id = row.getCell("B").value as number
@@ -265,6 +279,10 @@ async function parseBangboos() {
       const critRate = row.getCell("S").value as number
       const critDamage = row.getCell("T").value as number
 
+      const hakushBangbooData = hakushBangboos[id.toString()]
+      const rarity = hakushBangbooData?.rarity ?? ""
+      const rarityIcon = getBangbooRarityIcon(hakushCommonData, rarity)
+
       bangboos.push({
         name,
         id,
@@ -275,6 +293,10 @@ async function parseBangboos() {
         def,
         critRate,
         critDamage,
+        avatar: hakushBangbooData?.avatar ?? "",
+        sprite: hakushBangbooData?.sprite ?? "",
+        rarity,
+        rarityIcon,
       })
     }
   })
@@ -388,6 +410,20 @@ function getFactionIcon(commonData: HakushCommonData, faction: string): string {
   const factions: Record<string, string> = commonData.factions ?? {}
 
   return factions[key] ?? ""
+}
+
+function getBangbooRarityIcon(
+  commonData: HakushCommonData,
+  rarity: string,
+): string {
+  if (!rarity) {
+    return ""
+  }
+
+  const rarities: Record<string, string> = commonData.rarities ?? {}
+  const key = `bangbooRarity${rarity.toUpperCase()}`
+
+  return rarities[key] ?? ""
 }
 
 function getAgentRarityIcon(
