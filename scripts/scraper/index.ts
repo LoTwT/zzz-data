@@ -16,10 +16,15 @@ import { toCamelCase } from "./utils"
 
 const HAKUSH_URL = "https://zzz3.hakush.in"
 const AGENTS_PAGE_URL = `${HAKUSH_URL}/character`
+const BANGBOOS_PAGE_URL = `${HAKUSH_URL}/bangboo`
 
 const _dirname = fileURLToPath(new URL(".", import.meta.url))
 const commonDataPath = resolve(_dirname, "../../src/data/hakush/common.json")
 const agentsDataPath = resolve(_dirname, "../../src/data/hakush/agents.json")
+const bangboosDataPath = resolve(
+  _dirname,
+  "../../src/data/hakush/bangboos.json",
+)
 
 async function scrape() {
   console.log("Starting scraper...")
@@ -35,8 +40,10 @@ async function scrape() {
   }
 
   const { agents, agentIds } = await scrapeAgents(browser, commonImages)
+  const { bangboos, bangbooIds } = await scrapeBangboos(browser)
   processCommonImages(commonImages)
   console.log(`Found ${agentIds.length} agents`)
+  console.log(`Found ${bangbooIds.length} bangboos`)
 
   const pages = await Promise.all(
     Array.from({ length: 5 }, () => browser.newPage()),
@@ -57,6 +64,20 @@ async function scrape() {
   const agentDetails = await Promise.all(agentDetailTasks)
   console.log("Scraped all agent details")
 
+  const bangbooDetailTasks = bangbooIds.map((bangbooId) =>
+    limit(async () => {
+      const page = await pagePool.acquire()
+      try {
+        return await scrapeBangbooDetail(page, bangbooId)
+      } finally {
+        pagePool.release(page)
+      }
+    }),
+  )
+
+  const bangbooDetails = await Promise.all(bangbooDetailTasks)
+  console.log("Scraped all bangboo details")
+
   await pagePool.closeAll()
 
   for (const detail of agentDetails) {
@@ -68,11 +89,23 @@ async function scrape() {
     }
   }
 
+  for (const detail of bangbooDetails) {
+    if (detail && detail.bangbooId) {
+      bangboos[detail.bangbooId] = {
+        ...bangboos[detail.bangbooId],
+        ...detail.data,
+      }
+    }
+  }
+
   await mkdir(dirname(commonDataPath), { recursive: true })
   await writeFile(commonDataPath, `${JSON.stringify(commonImages, null, 2)}\n`)
 
   await mkdir(dirname(agentsDataPath), { recursive: true })
   await writeFile(agentsDataPath, `${JSON.stringify(agents, null, 2)}\n`)
+
+  await mkdir(dirname(bangboosDataPath), { recursive: true })
+  await writeFile(bangboosDataPath, `${JSON.stringify(bangboos, null, 2)}\n`)
 
   await browser.close()
   console.log("Done!")
@@ -224,6 +257,50 @@ async function scrapeAgents(
   return { agents, agentIds }
 }
 
+async function scrapeBangboos(browser: Browser) {
+  const page = await browser.newPage()
+  await page.goto(BANGBOOS_PAGE_URL, {
+    timeout: 60000,
+    waitUntil: "networkidle2",
+  })
+
+  const html = await page.content()
+  const $ = cheerio.load(html)
+
+  const bangboos: Record<number, Record<string, any>> = {}
+  const bangbooIds: number[] = []
+  const bangboosDiv = $("div#search-input-cont").next().next()
+
+  bangboosDiv.children().each((_, elem) => {
+    const href = $(elem).attr("href")
+
+    if (!href) {
+      return
+    }
+
+    const idSegment = href.split("/").pop()
+    const bangbooId = idSegment ? Number.parseInt(idSegment, 10) : Number.NaN
+
+    if (!Number.isFinite(bangbooId)) {
+      return
+    }
+
+    bangbooIds.push(bangbooId)
+
+    bangboos[bangbooId] = bangboos[bangbooId] || {}
+
+    const imageUrl = $(elem).find("img.avatar-icon-front").attr("src")
+
+    if (imageUrl) {
+      bangboos[bangbooId].avatar = imageUrl
+    }
+  })
+
+  await page.close()
+
+  return { bangboos, bangbooIds }
+}
+
 async function scrapeAgentDetail(page: Page, agentId: number) {
   const agentUrl = `${HAKUSH_URL}/character/${agentId}`
 
@@ -245,6 +322,34 @@ async function scrapeAgentDetail(page: Page, agentId: number) {
 
   return {
     agentId,
+    data: {
+      sprite: backgroundImageUrl,
+    },
+  }
+}
+
+async function scrapeBangbooDetail(page: Page, bangbooId: number) {
+  const bangbooUrl = `${HAKUSH_URL}/bangboo/${bangbooId}`
+
+  await page.goto(bangbooUrl, {
+    timeout: 60000,
+    waitUntil: "networkidle2",
+  })
+
+  const html = await page.content()
+  const $ = cheerio.load(html)
+
+  const backgroundImageDiv = $("div.char-background-image")
+  const style = backgroundImageDiv.attr("style")
+
+  let backgroundImageUrl: string | null = null
+  if (style) {
+    const match = style.match(/background-image:\s*url\(['"]?([^'"()]+)['"]?\)/)
+    backgroundImageUrl = match ? match[1] : null
+  }
+
+  return {
+    bangbooId,
     data: {
       sprite: backgroundImageUrl,
     },
