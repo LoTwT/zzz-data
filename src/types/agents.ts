@@ -17,4 +17,13 @@ export interface Agent {
   hp: number
   atk: number
   def: number
+
+  avatar: string
+  sprite: string
+  rarity: string
+  rarityIcon: string
+  attributeIcon: string
+  specialtyIcon: string
+  attackTypeIcon: string
+  factionIcon: string
 }

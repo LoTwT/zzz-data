@@ -18,7 +18,15 @@
       "anomalyProficiency": 93,
       "hp": 7500.7134,
       "atk": 583.957,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop01.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole01.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampGentleHouse.webp"
     },
     {
       "name": "猫又",
@@ -38,7 +46,15 @@
       "anomalyProficiency": 96,
       "hp": 7560.1902,
       "atk": 835.5958,
-      "def": 587.5794
+      "def": 587.5794,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop11.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole11.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampGentleHouse.webp"
     },
     {
       "name": "妮可",
@@ -58,7 +74,15 @@
       "anomalyProficiency": 93,
       "hp": 8145.8433,
       "atk": 574.1691,
-      "def": 622.6159
+      "def": 622.6159,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop12.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole12.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconEther.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconSupport.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampGentleHouse.webp"
     },
     {
       "name": "「11号」",
@@ -78,7 +102,15 @@
       "anomalyProficiency": 93,
       "hp": 7673.7042,
       "atk": 813.5686,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop05.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole05.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSilvers.webp"
     },
     {
       "name": "伊德海莉",
@@ -98,7 +130,15 @@
       "anomalyProficiency": 90,
       "hp": 8497.1437,
       "atk": 784.9099,
-      "def": 448.4451
+      "def": 448.4451,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop52.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole52.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconIce.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconRupture.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSpookShack.webp"
     },
     {
       "name": "可琳",
@@ -118,7 +158,15 @@
       "anomalyProficiency": 96,
       "hp": 6976.9443,
       "atk": 732.1414,
-      "def": 604.5976
+      "def": 604.5976,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop09.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole09.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampVictoriaHousekeepingCo..webp"
     },
     {
       "name": "凯撒",
@@ -138,7 +186,15 @@
       "anomalyProficiency": 90,
       "hp": 9526.2299,
       "atk": 636.6899,
-      "def": 753.862
+      "def": 753.862,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop25.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole25.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconDefense.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSonsOfCalydon.webp"
     },
     {
       "name": "比利",
@@ -158,7 +214,15 @@
       "anomalyProficiency": 91,
       "hp": 6907.2636,
       "atk": 712.2765,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop10.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole10.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampGentleHouse.webp"
     },
     {
       "name": "雅",
@@ -178,7 +242,15 @@
       "anomalyProficiency": 148,
       "hp": 7673.7042,
       "atk": 805.6952,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop13.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole13.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFrost.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampH.S.O-S6.webp"
     },
     {
       "name": "珂蕾妲",
@@ -198,7 +270,15 @@
       "anomalyProficiency": 96,
       "hp": 8127.3088,
       "atk": 660.8413,
-      "def": 594.5855
+      "def": 594.5855,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop14.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole14.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampBelobogIndustries.webp"
     },
     {
       "name": "安东",
@@ -218,7 +298,15 @@
       "anomalyProficiency": 90,
       "hp": 7219.0996,
       "atk": 716.6483,
-      "def": 622.6159
+      "def": 622.6159,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop15.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole15.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampBelobogIndustries.webp"
     },
     {
       "name": "本",
@@ -238,7 +326,15 @@
       "anomalyProficiency": 90,
       "hp": 8577.5504,
       "atk": 578.0866,
-      "def": 724.0351
+      "def": 724.0351,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop16.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole16.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconDefense.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampBelobogIndustries.webp"
     },
     {
       "name": "苍角",
@@ -258,7 +354,15 @@
       "anomalyProficiency": 96,
       "hp": 8025.9663,
       "atk": 590.8333,
-      "def": 597.5915
+      "def": 597.5915,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop17.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole17.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconIce.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconSupport.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampH.S.O-S6.webp"
     },
     {
       "name": "莱卡恩",
@@ -278,7 +382,15 @@
       "anomalyProficiency": 90,
       "hp": 8416.2915,
       "atk": 653.5933,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop18.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole18.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconIce.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampVictoriaHousekeepingCo..webp"
     },
     {
       "name": "露西",
@@ -298,7 +410,15 @@
       "anomalyProficiency": 93,
       "hp": 8025.9663,
       "atk": 583.957,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop27.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole27.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconSupport.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSonsOfCalydon.webp"
     },
     {
       "name": "莱特",
@@ -318,7 +438,15 @@
       "anomalyProficiency": 90,
       "hp": 8253.2915,
       "atk": 722.9569,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop26.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole26.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSonsOfCalydon.webp"
     },
     {
       "name": "柏妮思",
@@ -338,7 +466,15 @@
       "anomalyProficiency": 120,
       "hp": 7368.1929,
       "atk": 788.4528,
-      "def": 600.5916
+      "def": 600.5916,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop32.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole32.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSonsOfCalydon.webp"
     },
     {
       "name": "格莉丝",
@@ -358,7 +494,15 @@
       "anomalyProficiency": 116,
       "hp": 7482.7069,
       "atk": 750.9679,
-      "def": 600.5916
+      "def": 600.5916,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop20.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole20.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampBelobogIndustries.webp"
     },
     {
       "name": "艾莲",
@@ -378,7 +522,15 @@
       "anomalyProficiency": 93,
       "hp": 7673.7042,
       "atk": 863.2102,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop21.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole21.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconIce.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampVictoriaHousekeepingCo..webp"
     },
     {
       "name": "悠真",
@@ -398,7 +550,15 @@
       "anomalyProficiency": 95,
       "hp": 7405.6956,
       "atk": 840.593,
-      "def": 600.5916
+      "def": 600.5916,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop35.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole35.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampH.S.O-S6.webp"
     },
     {
       "name": "丽娜",
@@ -418,7 +578,15 @@
       "anomalyProficiency": 92,
       "hp": 8609.2122,
       "atk": 642.1859,
-      "def": 600.5916
+      "def": 600.5916,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop22.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole22.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconSupport.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampVictoriaHousekeepingCo..webp"
     },
     {
       "name": "柳",
@@ -438,7 +606,15 @@
       "anomalyProficiency": 114,
       "hp": 7788.6961,
       "atk": 797.574,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop31.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole31.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampH.S.O-S6.webp"
     },
     {
       "name": "朱鸢",
@@ -458,7 +634,15 @@
       "anomalyProficiency": 92,
       "hp": 7482.7069,
       "atk": 844.3011,
-      "def": 600.5916
+      "def": 600.5916,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop23.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole23.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconEther.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampN.E.P.S..webp"
     },
     {
       "name": "青衣",
@@ -478,7 +662,15 @@
       "anomalyProficiency": 93,
       "hp": 8250.5871,
       "atk": 683.2048,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop29.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole29.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampN.E.P.S..webp"
     },
     {
       "name": "简",
@@ -498,7 +690,15 @@
       "anomalyProficiency": 114,
       "hp": 7788.6961,
       "atk": 805.6952,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop24.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole24.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampN.E.P.S..webp"
     },
     {
       "name": "赛斯",
@@ -518,7 +718,15 @@
       "anomalyProficiency": 90,
       "hp": 8701.3125,
       "atk": 568.2987,
-      "def": 746.1361
+      "def": 746.1361,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop30.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole30.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconDefense.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampN.E.P.S..webp"
     },
     {
       "name": "派派",
@@ -538,7 +746,15 @@
       "anomalyProficiency": 118,
       "hp": 6976.9443,
       "atk": 683.4172,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop28.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole28.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSonsOfCalydon.webp"
     },
     {
       "name": "雨果",
@@ -558,7 +774,15 @@
       "anomalyProficiency": 90,
       "hp": 7940.7128,
       "atk": 844.3011,
-      "def": 616.6098
+      "def": 616.6098,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop42.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole42.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconIce.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampMockingBird.webp"
     },
     {
       "name": "奥菲丝&「鬼火」",
@@ -578,7 +802,15 @@
       "anomalyProficiency": 90,
       "hp": 7788.6961,
       "atk": 854.7586,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop49.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole49.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSilvers.webp"
     },
     {
       "name": "耀嘉音",
@@ -598,7 +830,15 @@
       "anomalyProficiency": 92,
       "hp": 8609.2122,
       "atk": 640.7699,
-      "def": 600.5916
+      "def": 600.5916,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop36.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole36.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconEther.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconSupport.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampStarsOfLyra.webp"
     },
     {
       "name": "伊芙琳",
@@ -618,7 +858,15 @@
       "anomalyProficiency": 90,
       "hp": 7788.6961,
       "atk": 854.7586,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop37.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole37.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampStarsOfLyra.webp"
     },
     {
       "name": "薇薇安",
@@ -638,7 +886,15 @@
       "anomalyProficiency": 118,
       "hp": 7673.7042,
       "atk": 805.6952,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop41.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole41.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconEther.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampMockingBird.webp"
     },
     {
       "name": "波可娜",
@@ -658,7 +914,15 @@
       "anomalyProficiency": 90,
       "hp": 7612.7878,
       "atk": 590.8333,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop38.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole38.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSonsOfCalydon.webp"
     },
     {
       "name": "「扳机」",
@@ -678,7 +942,15 @@
       "anomalyProficiency": 95,
       "hp": 7923.1783,
       "atk": 675.7503,
-      "def": 600.5916
+      "def": 600.5916,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop39.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole39.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconPierce.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSilvers.webp"
     },
     {
       "name": "仪玄",
@@ -698,7 +970,15 @@
       "anomalyProficiency": 90,
       "hp": 7953.8621,
       "atk": 872.5748,
-      "def": 441.1145
+      "def": 441.1145,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop44.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole44.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconAuricInk.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconRupture.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSuibian.webp"
     },
     {
       "name": "零号·安比",
@@ -718,7 +998,15 @@
       "anomalyProficiency": 93,
       "hp": 7673.7042,
       "atk": 854.7586,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop40.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole40.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSilvers.webp"
     },
     {
       "name": "橘福福",
@@ -738,7 +1026,15 @@
       "anomalyProficiency": 96,
       "hp": 8250.5871,
       "atk": 690.6593,
-      "def": 597.5915
+      "def": 597.5915,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop43.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole43.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconStun.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSuibian.webp"
     },
     {
       "name": "爱丽丝",
@@ -758,7 +1054,15 @@
       "anomalyProficiency": 118,
       "hp": 7673.7042,
       "atk": 805.6952,
-      "def": 606.5977
+      "def": 606.5977,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop46.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole46.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAnomaly.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSpookShack.webp"
     },
     {
       "name": "柚叶",
@@ -778,7 +1082,15 @@
       "anomalyProficiency": 93,
       "hp": 8829.47,
       "atk": 683.2048,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop47.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole47.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconSupport.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSpookShack.webp"
     },
     {
       "name": "潘引壶",
@@ -798,7 +1110,15 @@
       "anomalyProficiency": 90,
       "hp": 8453.7942,
       "atk": 586.9158,
-      "def": 712.9433
+      "def": 712.9433,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop45.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole45.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconPhysical.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconDefense.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSuibian.webp"
     },
     {
       "name": "真斗",
@@ -818,7 +1138,15 @@
       "anomalyProficiency": 90,
       "hp": 7724.8563,
       "atk": 680.2106,
-      "def": 443.56
+      "def": 443.56,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop51.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole51.webp",
+      "rarity": "A",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconRupture.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSpookShack.webp"
     },
     {
       "name": "卢西娅",
@@ -838,7 +1166,15 @@
       "anomalyProficiency": 95,
       "hp": 8477.1696,
       "atk": 683.2048,
-      "def": 594.5855
+      "def": 594.5855,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop50.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole50.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconEther.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconSupport.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSpookShack.webp"
     },
     {
       "name": "「席德」",
@@ -858,7 +1194,15 @@
       "anomalyProficiency": 93,
       "hp": 7673.7042,
       "atk": 854.7586,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "https://api.hakush.in/zzz/UI/IconRoleCrop48.webp",
+      "sprite": "https://api.hakush.in/zzz/UI/IconRole48.webp",
+      "rarity": "S",
+      "rarityIcon": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconElectric.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconSlash.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampSilvers.webp"
     },
     {
       "name": "般岳",
@@ -878,7 +1222,15 @@
       "anomalyProficiency": 93,
       "hp": 7707.7134,
       "atk": 609.957,
-      "def": 612.6038
+      "def": 612.6038,
+      "avatar": "",
+      "sprite": "",
+      "rarity": "",
+      "rarityIcon": "",
+      "attributeIcon": "https://api.hakush.in/zzz/UI/IconFire.webp",
+      "specialtyIcon": "https://api.hakush.in/zzz/UI/IconRupture.webp",
+      "attackTypeIcon": "https://api.hakush.in/zzz/UI/IconStrike.webp",
+      "factionIcon": "https://api.hakush.in/zzz/UI/IconCampGentleHouse.webp"
     }
   ]
 }

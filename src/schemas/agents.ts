@@ -21,6 +21,14 @@ export const AgentSchema = z
     hp: z.number(),
     atk: z.number(),
     def: z.number(),
+    avatar: z.string(),
+    sprite: z.string(),
+    rarity: z.string(),
+    rarityIcon: z.string(),
+    attributeIcon: z.string(),
+    specialtyIcon: z.string(),
+    attackTypeIcon: z.string(),
+    factionIcon: z.string(),
   })
   .openapi("Agent") satisfies z.ZodType<Agent>
 

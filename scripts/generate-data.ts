@@ -2,7 +2,7 @@ import type { CellFormulaValue, CellValue } from "exceljs"
 import type { Agent, WEngine } from "@/types"
 import type { Bangboo } from "@/types/bangboos"
 import type { DriveDisc } from "@/types/drive-discs"
-import { writeFile } from "node:fs/promises"
+import { readFile, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import exceljs from "exceljs"
@@ -17,6 +17,61 @@ const agentJsonPath = resolve(_dirname, "../src/data/agents.json")
 const wEngineJsonPath = resolve(_dirname, "../src/data/w-engines.json")
 const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
 const driveDiscsJsonPath = resolve(_dirname, "../src/data/drive-discs.json")
+
+const hakushAgentJsonPath = resolve(_dirname, "../src/data/hakush/agents.json")
+const hakushCommonJsonPath = resolve(_dirname, "../src/data/hakush/common.json")
+
+const attributeKeyMap: Record<string, string> = {
+  电: "electric",
+  物理: "physical",
+  以太: "ether",
+  火: "fire",
+  冰: "ice",
+  烈霜: "frost",
+  玄墨: "auricInk",
+}
+
+const specialtyKeyMap: Record<string, string> = {
+  强攻: "attack",
+  击破: "stun",
+  异常: "anomaly",
+  支援: "support",
+  防护: "defense",
+  命破: "rupture",
+}
+
+const attackTypeKeyMap: Record<string, string> = {
+  斩击: "slash",
+  打击: "strike",
+  穿透: "pierce",
+}
+
+const factionKeyMap: Record<string, string> = {
+  狡兔屋: "cunningHares",
+  维多利亚家政: "victoriaHousekeepingCo",
+  白祈重工: "belobogHeavyIndustries",
+  卡吕冬之子: "sonsOfCalydon",
+  新艾利都防卫军: "defenseForceSilverSquad",
+  对空洞特别行动部第六课: "hollowSpecialOperationsSection6",
+  刑侦特勤组: "criminalInvestigationSpecialResponseTeam",
+  天琴座: "starsOfLyra",
+  反舌鸟: "mockingbird",
+  云岿山: "yunkuiSummit",
+  怪啖屋: "spookShack",
+}
+
+let hakushCommonDataCache: HakushCommonData | null = null
+
+async function getHakushCommonData(): Promise<HakushCommonData> {
+  if (hakushCommonDataCache) {
+    return hakushCommonDataCache
+  }
+
+  const raw = await readFile(hakushCommonJsonPath, "utf-8")
+  hakushCommonDataCache = JSON.parse(raw) as HakushCommonData
+
+  return hakushCommonDataCache
+}
 
 async function generateData() {
   await workbook.xlsx.readFile(resolve(_dirname, "../data.xlsx"))
@@ -46,6 +101,16 @@ async function parseAgents() {
   const excludeIds = [2011, 2021]
 
   const agents: Agent[] = []
+  const hakushAgentsRaw = await readFile(hakushAgentJsonPath, "utf-8")
+  const hakushAgents = JSON.parse(hakushAgentsRaw) as Record<
+    string,
+    {
+      avatar: string
+      sprite: string
+      rarity: string
+    }
+  >
+  const hakushCommonData = await getHakushCommonData()
 
   sheet?.eachRow((row, rowNumber) => {
     // 代理人
@@ -86,6 +151,14 @@ async function parseAgents() {
       // 60级基础防御力
       const def = row.getCell("AB").value as number
 
+      const hakushAgentData = hakushAgents[id.toString()]
+      const rarity = hakushAgentData?.rarity ?? ""
+      const rarityIcon = getAgentRarityIcon(hakushCommonData, rarity)
+      const attributeIcon = getAttributeIcon(hakushCommonData, attribute)
+      const specialtyIcon = getSpecialtyIcon(hakushCommonData, specialty)
+      const attackTypeIcon = getAttackTypeIcon(hakushCommonData, attackType)
+      const factionIcon = getFactionIcon(hakushCommonData, faction)
+
       agents.push({
         name,
         id,
@@ -105,6 +178,14 @@ async function parseAgents() {
         hp,
         atk,
         def,
+        avatar: hakushAgentData?.avatar ?? "",
+        sprite: hakushAgentData?.sprite ?? "",
+        rarity,
+        rarityIcon,
+        attributeIcon,
+        specialtyIcon,
+        attackTypeIcon,
+        factionIcon,
       })
     }
   })
@@ -240,6 +321,105 @@ async function parseDriveDiscs() {
   return driveDiscs
 }
 
+function getAttributeIcon(
+  commonData: HakushCommonData,
+  attribute: string,
+): string {
+  if (!attribute) {
+    return ""
+  }
+
+  const key = attributeKeyMap[attribute]
+  if (!key) {
+    return ""
+  }
+
+  const attributes: Record<string, string> = commonData.attributes ?? {}
+
+  return attributes[key] ?? ""
+}
+
+function getSpecialtyIcon(
+  commonData: HakushCommonData,
+  specialty: string,
+): string {
+  if (!specialty) {
+    return ""
+  }
+
+  const key = specialtyKeyMap[specialty]
+  if (!key) {
+    return ""
+  }
+
+  const specialties: Record<string, string> = commonData.specialties ?? {}
+
+  return specialties[key] ?? ""
+}
+
+function getAttackTypeIcon(
+  commonData: HakushCommonData,
+  attackType: string,
+): string {
+  if (!attackType) {
+    return ""
+  }
+
+  const normalizedKey = normalizeAttackTypeKey(attackType)
+  if (!normalizedKey) {
+    return ""
+  }
+
+  const attackTypes: Record<string, string> = commonData.attackTypes ?? {}
+
+  return attackTypes[normalizedKey] ?? ""
+}
+
+function getFactionIcon(commonData: HakushCommonData, faction: string): string {
+  if (!faction) {
+    return ""
+  }
+
+  const key = factionKeyMap[faction]
+  if (!key) {
+    return ""
+  }
+
+  const factions: Record<string, string> = commonData.factions ?? {}
+
+  return factions[key] ?? ""
+}
+
+function getAgentRarityIcon(
+  commonData: HakushCommonData,
+  rarity: string,
+): string {
+  if (!rarity) {
+    return ""
+  }
+
+  const rarities: Record<string, string> = commonData.rarities ?? {}
+  const key = `agentRarity${rarity.toUpperCase()}`
+
+  return rarities[key] ?? ""
+}
+
+function normalizeAttackTypeKey(attackType: string): string | undefined {
+  const candidates = attackType
+    .split(/[,，]/)
+    .map((value) => value.trim())
+    .filter(Boolean)
+
+  for (const candidate of candidates) {
+    const key = attackTypeKeyMap[candidate]
+    if (key) {
+      return key
+    }
+  }
+
+  return undefined
+}
+
 generateData()
 
 function normalizeNumericValue(value: CellValue | undefined): number {
@@ -262,4 +442,13 @@ function normalizeNumericValue(value: CellValue | undefined): number {
   }
 
   return 0
+}
+
+interface HakushCommonData {
+  rarities?: Record<string, string>
+  attributes?: Record<string, string>
+  specialties?: Record<string, string>
+  attackTypes?: Record<string, string>
+  factions?: Record<string, string>
+  [key: string]: unknown
 }
