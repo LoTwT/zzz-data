@@ -1,3 +1,4 @@
+import type { DriveDisc } from "@/types/drive-discs"
 import { z } from "@hono/zod-openapi"
 
 export const DriveDiscSchema = z
@@ -7,7 +8,7 @@ export const DriveDiscSchema = z
     twoPieceBonus: z.string(),
     fourPieceBonus: z.string(),
   })
-  .openapi("DriveDisc")
+  .openapi("DriveDisc") satisfies z.ZodType<DriveDisc>
 
 export const DriveDiscsSchema = z
   .object({

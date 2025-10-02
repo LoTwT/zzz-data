@@ -1,3 +1,4 @@
+import type { WEngine } from "@/types/w-engines"
 import { z } from "@hono/zod-openapi"
 
 export const WEngineSchema = z
@@ -10,7 +11,7 @@ export const WEngineSchema = z
     advancedStat: z.string(),
     advancedStatValue: z.number(),
   })
-  .openapi("WEngine")
+  .openapi("WEngine") satisfies z.ZodType<WEngine>
 
 export const WEnginesSchema = z
   .object({

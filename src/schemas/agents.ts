@@ -1,3 +1,4 @@
+import type { Agent } from "@/types/agents"
 import { z } from "@hono/zod-openapi"
 
 export const AgentSchema = z
@@ -21,7 +22,7 @@ export const AgentSchema = z
     atk: z.number(),
     def: z.number(),
   })
-  .openapi("Agent")
+  .openapi("Agent") satisfies z.ZodType<Agent>
 
 export const AgentsSchema = z
   .object({

@@ -1,3 +1,4 @@
+import type { Bangboo } from "@/types/bangboos"
 import { z } from "@hono/zod-openapi"
 
 export const BangbooSchema = z
@@ -12,7 +13,7 @@ export const BangbooSchema = z
     critRate: z.number(),
     critDamage: z.number(),
   })
-  .openapi("Bangboo")
+  .openapi("Bangboo") satisfies z.ZodType<Bangboo>
 
 export const BangboosSchema = z
   .object({
