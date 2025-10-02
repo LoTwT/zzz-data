@@ -49,7 +49,7 @@ async function scrape() {
   const commonImages: Record<string, Record<string, string>> = {
     factions: {},
     attributes: {},
-    ranks: {},
+    rarities: {},
     specialties: {},
     attackTypes: {},
   }
@@ -217,22 +217,22 @@ function processCommonImages(
       "https://api.hakush.in/zzz/UI/IconCampSilvers.webp",
   }
 
-  const rankImages = {
-    agentRankS:
+  const rarityImages = {
+    agentRarityS:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
-    agentRankA:
+    agentRarityA:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
-    bangbooRankS:
+    bangbooRarityS:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png",
-    bangbooRankA:
+    bangbooRarityA:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png",
-    itemRankS:
+    itemRarityS:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/b/bf/Icon_Item_Rank_S.png",
-    itemRankA:
+    itemRarityA:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/45/Icon_Item_Rank_A.png",
-    itemRankB:
+    itemRarityB:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/47/Icon_Item_Rank_B.png",
-    itemRankC:
+    itemRarityC:
       "https://static.wikia.nocookie.net/zenless-zone-zero/images/3/37/Icon_Item_Rank_C.png",
   }
 
@@ -240,7 +240,7 @@ function processCommonImages(
     ...commonImages.factions,
     ...factionImages,
   }
-  commonImages.ranks = rankImages
+  commonImages.rarities = rarityImages
 
   const attributeKeys = new Set<string>(Object.values(ATTRIBUTES))
   const specialtyKeys = new Set<string>(Object.values(SPECIALTIES))
@@ -489,10 +489,18 @@ async function scrapeAgentDetail(page: Page, agentId: number) {
     backgroundImageUrl = match ? match[1] : null
   }
 
+  const rarityDiv = $(backgroundImageDiv)
+    .next()
+    .find("div")
+    .filter((_, elem) => $(elem).text().trim() === "Rarity")
+    .first()
+  const rarity = rarityDiv.next().text().trim()
+
   return {
     agentId,
     data: {
       sprite: backgroundImageUrl,
+      rarity,
     },
   }
 }
@@ -514,10 +522,18 @@ async function scrapeBangbooDetail(page: Page, bangbooId: number) {
     backgroundImageUrl = match ? match[1] : null
   }
 
+  const rarityDiv = $(backgroundImageDiv)
+    .next()
+    .find("div")
+    .filter((_, elem) => $(elem).text().trim() === "Rarity")
+    .first()
+  const rarity = rarityDiv.next().text().trim()
+
   return {
     bangbooId,
     data: {
       sprite: backgroundImageUrl,
+      rarity,
     },
   }
 }
@@ -539,10 +555,18 @@ async function scrapeWEngineDetail(page: Page, wEngineId: number) {
     backgroundImageUrl = match ? match[1] : null
   }
 
+  const rarityDiv = $(backgroundImageDiv)
+    .next()
+    .find("div")
+    .filter((_, elem) => $(elem).text().trim() === "Rarity")
+    .first()
+  const rarity = rarityDiv.next().text().trim()
+
   return {
     wEngineId,
     data: {
       sprite: backgroundImageUrl,
+      rarity,
     },
   }
 }

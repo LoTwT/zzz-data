@@ -22,15 +22,15 @@
     "frost": "https://api.hakush.in/zzz/UI/IconFrost.webp",
     "auricInk": "https://api.hakush.in/zzz/UI/IconAuricInk.webp"
   },
-  "ranks": {
-    "agentRankS": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
-    "agentRankA": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
-    "bangbooRankS": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png",
-    "bangbooRankA": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png",
-    "itemRankS": "https://static.wikia.nocookie.net/zenless-zone-zero/images/b/bf/Icon_Item_Rank_S.png",
-    "itemRankA": "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/45/Icon_Item_Rank_A.png",
-    "itemRankB": "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/47/Icon_Item_Rank_B.png",
-    "itemRankC": "https://static.wikia.nocookie.net/zenless-zone-zero/images/3/37/Icon_Item_Rank_C.png"
+  "rarities": {
+    "agentRarityS": "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+    "agentRarityA": "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+    "bangbooRarityS": "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png",
+    "bangbooRarityA": "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png",
+    "itemRarityS": "https://static.wikia.nocookie.net/zenless-zone-zero/images/b/bf/Icon_Item_Rank_S.png",
+    "itemRarityA": "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/45/Icon_Item_Rank_A.png",
+    "itemRarityB": "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/47/Icon_Item_Rank_B.png",
+    "itemRarityC": "https://static.wikia.nocookie.net/zenless-zone-zero/images/3/37/Icon_Item_Rank_C.png"
   },
   "specialties": {
     "attack": "https://api.hakush.in/zzz/UI/IconAttackType.webp",
