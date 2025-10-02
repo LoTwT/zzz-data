@@ -73,6 +73,10 @@ async function parseAgents() {
       const impact = row.getCell("Q").value as number
       // 异常掌控
       const anomalyMastery = row.getCell("R").value as number
+      // 能量上限（闪能上限）
+      const enegyLimit = row.getCell("S").value as number
+      // 能量自动回复（闪能自动累积）
+      const enegyRegen = row.getCell("T").value as number
       // 异常精通
       const anomalyProficiency = row.getCell("U").value as number
       // 60级基础生命值
@@ -95,6 +99,8 @@ async function parseAgents() {
         critDamage,
         impact,
         anomalyMastery,
+        enegyLimit,
+        enegyRegen,
         anomalyProficiency,
         hp,
         atk,

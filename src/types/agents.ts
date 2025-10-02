@@ -11,6 +11,8 @@ export interface Agent {
   critDamage: number
   impact: number
   anomalyMastery: number
+  enegyLimit: number
+  enegyRegen: number
   anomalyProficiency: number
   hp: number
   atk: number

@@ -14,6 +14,8 @@ export const AgentSchema = z
     critDamage: z.number(),
     impact: z.number(),
     anomalyMastery: z.number(),
+    enegyLimit: z.number(),
+    enegyRegen: z.number(),
     anomalyProficiency: z.number(),
     hp: z.number(),
     atk: z.number(),
