@@ -18,6 +18,7 @@ const HAKUSH_URL = "https://zzz3.hakush.in"
 const AGENTS_PAGE_URL = `${HAKUSH_URL}/character`
 const BANGBOOS_PAGE_URL = `${HAKUSH_URL}/bangboo`
 const W_ENGINES_PAGE_URL = `${HAKUSH_URL}/weapon`
+const DRIVE_DISCS_PAGE_URL = `${HAKUSH_URL}/equipment`
 
 const NAVIGATION_OPTIONS = {
   timeout: 60000,
@@ -35,6 +36,10 @@ const wEnginesDataPath = resolve(
   _dirname,
   "../../src/data/hakush/w-engines.json",
 )
+const driveDiscsDataPath = resolve(
+  _dirname,
+  "../../src/data/hakush/drive-discs.json",
+)
 
 async function scrape() {
   console.log("Starting scraper...")
@@ -49,21 +54,26 @@ async function scrape() {
     attackTypes: {},
   }
 
-  console.log("Fetching listing pages for agents, bangboos, and W-Engines...")
+  console.log(
+    "Fetching listing pages for agents, bangboos, W-Engines, and Drive Discs...",
+  )
   const [
     { agents, agentIds },
     { bangboos, bangbooIds },
     { wEngines, wEngineIds },
+    { driveDiscs, driveDiscIds },
   ] = await Promise.all([
     scrapeAgents(browser, commonImages),
     scrapeBangboos(browser),
     scrapeWEngines(browser),
+    scrapeDriveDiscs(browser),
   ])
 
   processCommonImages(commonImages)
   console.log(`Found ${agentIds.length} agents`)
   console.log(`Found ${bangbooIds.length} bangboos`)
   console.log(`Found ${wEngineIds.length} W-Engines`)
+  console.log(`Found ${driveDiscIds.length} Drive Discs`)
 
   console.log("Preparing page pool for detail scraping...")
   const pages = await Promise.all(
@@ -71,7 +81,9 @@ async function scrape() {
   )
   const pagePool = new PagePool(pages)
 
-  console.log("Scraping detail pages for agents, bangboos, and W-Engines...")
+  console.log(
+    "Scraping detail pages for agents, bangboos, W-Engines, and Drive Discs...",
+  )
 
   const detailTasks: Array<Promise<DetailResult>> = [
     ...agentIds.map((agentId) =>
@@ -107,11 +119,23 @@ async function scrape() {
         }
       }),
     ),
+    ...driveDiscIds.map((driveDiscId) =>
+      limit(async () => {
+        const page = await pagePool.acquire()
+        try {
+          const result = await scrapeDriveDiscDetail(page, driveDiscId)
+          return { type: "driveDisc" as const, result }
+        } finally {
+          pagePool.release(page)
+        }
+      }),
+    ),
   ]
 
   let mergedAgentDetails = 0
   let mergedBangbooDetails = 0
   let mergedWEngineDetails = 0
+  let mergedDriveDiscDetails = 0
 
   try {
     const detailResults = await Promise.all(detailTasks)
@@ -135,12 +159,21 @@ async function scrape() {
             ...result.data,
           }
         }
-      } else {
+      } else if (detail.type === "wEngine") {
         const { result } = detail
         if (result && result.wEngineId) {
           mergedWEngineDetails += 1
           wEngines[result.wEngineId] = {
             ...wEngines[result.wEngineId],
+            ...result.data,
+          }
+        }
+      } else {
+        const { result } = detail
+        if (result && result.driveDiscId) {
+          mergedDriveDiscDetails += 1
+          driveDiscs[result.driveDiscId] = {
+            ...driveDiscs[result.driveDiscId],
             ...result.data,
           }
         }
@@ -151,7 +184,7 @@ async function scrape() {
   }
 
   console.log(
-    `Scraped detail pages: ${mergedAgentDetails} agents, ${mergedBangbooDetails} bangboos, ${mergedWEngineDetails} W-Engines`,
+    `Scraped detail pages: ${mergedAgentDetails} agents, ${mergedBangbooDetails} bangboos, ${mergedWEngineDetails} W-Engines, ${mergedDriveDiscDetails} Drive Discs`,
   )
 
   await mkdir(dirname(commonDataPath), { recursive: true })
@@ -165,6 +198,12 @@ async function scrape() {
 
   await mkdir(dirname(wEnginesDataPath), { recursive: true })
   await writeFile(wEnginesDataPath, `${JSON.stringify(wEngines, null, 2)}\n`)
+
+  await mkdir(dirname(driveDiscsDataPath), { recursive: true })
+  await writeFile(
+    driveDiscsDataPath,
+    `${JSON.stringify(driveDiscs, null, 2)}\n`,
+  )
 
   await browser.close()
   console.log("Done!")
@@ -394,6 +433,46 @@ async function scrapeWEngines(browser: Browser) {
   return { wEngines, wEngineIds }
 }
 
+async function scrapeDriveDiscs(browser: Browser) {
+  const page = await browser.newPage()
+  await page.goto(DRIVE_DISCS_PAGE_URL, NAVIGATION_OPTIONS)
+
+  const html = await page.content()
+  const $ = cheerio.load(html)
+
+  const driveDiscs: Record<number, Record<string, any>> = {}
+  const driveDiscIds: number[] = []
+  const driveDiscsDiv = $("div#search-input-cont").next()
+
+  driveDiscsDiv.children().each((_, elem) => {
+    const href = $(elem).children("a").attr("href")
+
+    if (!href) {
+      return
+    }
+
+    const idSegment = href.split("/").pop()
+    const driveDiscId = idSegment ? Number.parseInt(idSegment, 10) : Number.NaN
+
+    if (!Number.isFinite(driveDiscId)) {
+      return
+    }
+
+    driveDiscIds.push(driveDiscId)
+    driveDiscs[driveDiscId] = driveDiscs[driveDiscId] || {}
+
+    const imageUrl = $(elem).find("img.avatar-icon-front").attr("src")
+
+    if (imageUrl) {
+      driveDiscs[driveDiscId].avatar = imageUrl
+    }
+  })
+
+  await page.close()
+
+  return { driveDiscs, driveDiscIds }
+}
+
 async function scrapeAgentDetail(page: Page, agentId: number) {
   const agentUrl = `${AGENTS_PAGE_URL}/${agentId}`
 
@@ -459,8 +538,34 @@ async function scrapeWEngineDetail(page: Page, wEngineId: number) {
     const match = style.match(/background-image:\s*url\(['"]?([^'"()]+)['"]?\)/)
     backgroundImageUrl = match ? match[1] : null
   }
+
   return {
     wEngineId,
+    data: {
+      sprite: backgroundImageUrl,
+    },
+  }
+}
+
+async function scrapeDriveDiscDetail(page: Page, driveDiscId: number) {
+  const driveDiscUrl = `${DRIVE_DISCS_PAGE_URL}/${driveDiscId}`
+
+  await page.goto(driveDiscUrl, NAVIGATION_OPTIONS)
+
+  const html = await page.content()
+  const $ = cheerio.load(html)
+
+  const backgroundImageDiv = $("div.wep-background-image")
+  const style = backgroundImageDiv.attr("style")
+
+  let backgroundImageUrl: string | null = null
+  if (style) {
+    const match = style.match(/background-image:\s*url\(['"]?([^'"()]+)['"]?\)/)
+    backgroundImageUrl = match ? match[1] : null
+  }
+
+  return {
+    driveDiscId,
     data: {
       sprite: backgroundImageUrl,
     },
@@ -481,4 +586,8 @@ type DetailResult =
   | {
       type: "wEngine"
       result: Awaited<ReturnType<typeof scrapeWEngineDetail>>
+    }
+  | {
+      type: "driveDisc"
+      result: Awaited<ReturnType<typeof scrapeDriveDiscDetail>>
     }
