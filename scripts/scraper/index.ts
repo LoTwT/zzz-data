@@ -18,6 +18,11 @@ const HAKUSH_URL = "https://zzz3.hakush.in"
 const AGENTS_PAGE_URL = `${HAKUSH_URL}/character`
 const BANGBOOS_PAGE_URL = `${HAKUSH_URL}/bangboo`
 
+const NAVIGATION_OPTIONS = {
+  timeout: 60000,
+  waitUntil: "networkidle2" as const,
+}
+
 const _dirname = fileURLToPath(new URL(".", import.meta.url))
 const commonDataPath = resolve(_dirname, "../../src/data/hakush/common.json")
 const agentsDataPath = resolve(_dirname, "../../src/data/hakush/agents.json")
@@ -39,64 +44,83 @@ async function scrape() {
     attackTypes: {},
   }
 
-  const { agents, agentIds } = await scrapeAgents(browser, commonImages)
-  const { bangboos, bangbooIds } = await scrapeBangboos(browser)
+  console.log("Fetching listing pages for agents and bangboos...")
+  const [{ agents, agentIds }, { bangboos, bangbooIds }] = await Promise.all([
+    scrapeAgents(browser, commonImages),
+    scrapeBangboos(browser),
+  ])
+
   processCommonImages(commonImages)
   console.log(`Found ${agentIds.length} agents`)
   console.log(`Found ${bangbooIds.length} bangboos`)
 
+  console.log("Preparing page pool for detail scraping...")
   const pages = await Promise.all(
     Array.from({ length: 5 }, () => browser.newPage()),
   )
   const pagePool = new PagePool(pages)
 
-  const agentDetailTasks = agentIds.map((agentId) =>
-    limit(async () => {
-      const page = await pagePool.acquire()
-      try {
-        return await scrapeAgentDetail(page, agentId)
-      } finally {
-        pagePool.release(page)
-      }
-    }),
-  )
+  console.log("Scraping detail pages for agents and bangboos...")
 
-  const agentDetails = await Promise.all(agentDetailTasks)
-  console.log("Scraped all agent details")
+  const detailTasks: Array<Promise<DetailResult>> = [
+    ...agentIds.map((agentId) =>
+      limit(async () => {
+        const page = await pagePool.acquire()
+        try {
+          const result = await scrapeAgentDetail(page, agentId)
+          return { type: "agent" as const, result }
+        } finally {
+          pagePool.release(page)
+        }
+      }),
+    ),
+    ...bangbooIds.map((bangbooId) =>
+      limit(async () => {
+        const page = await pagePool.acquire()
+        try {
+          const result = await scrapeBangbooDetail(page, bangbooId)
+          return { type: "bangboo" as const, result }
+        } finally {
+          pagePool.release(page)
+        }
+      }),
+    ),
+  ]
 
-  const bangbooDetailTasks = bangbooIds.map((bangbooId) =>
-    limit(async () => {
-      const page = await pagePool.acquire()
-      try {
-        return await scrapeBangbooDetail(page, bangbooId)
-      } finally {
-        pagePool.release(page)
-      }
-    }),
-  )
+  let mergedAgentDetails = 0
+  let mergedBangbooDetails = 0
 
-  const bangbooDetails = await Promise.all(bangbooDetailTasks)
-  console.log("Scraped all bangboo details")
+  try {
+    const detailResults = await Promise.all(detailTasks)
 
-  await pagePool.closeAll()
-
-  for (const detail of agentDetails) {
-    if (detail && detail.agentId) {
-      agents[detail.agentId] = {
-        ...agents[detail.agentId],
-        ...detail.data,
+    for (const detail of detailResults) {
+      if (detail.type === "agent") {
+        const { result } = detail
+        if (result && result.agentId) {
+          mergedAgentDetails += 1
+          agents[result.agentId] = {
+            ...agents[result.agentId],
+            ...result.data,
+          }
+        }
+      } else {
+        const { result } = detail
+        if (result && result.bangbooId) {
+          mergedBangbooDetails += 1
+          bangboos[result.bangbooId] = {
+            ...bangboos[result.bangbooId],
+            ...result.data,
+          }
+        }
       }
     }
+  } finally {
+    await pagePool.closeAll()
   }
 
-  for (const detail of bangbooDetails) {
-    if (detail && detail.bangbooId) {
-      bangboos[detail.bangbooId] = {
-        ...bangboos[detail.bangbooId],
-        ...detail.data,
-      }
-    }
-  }
+  console.log(
+    `Scraped detail pages: ${mergedAgentDetails} agents, ${mergedBangbooDetails} bangboos`,
+  )
 
   await mkdir(dirname(commonDataPath), { recursive: true })
   await writeFile(commonDataPath, `${JSON.stringify(commonImages, null, 2)}\n`)
@@ -196,10 +220,7 @@ async function scrapeAgents(
   commonImages: Record<string, Record<string, string>>,
 ) {
   const page = await browser.newPage()
-  await page.goto(AGENTS_PAGE_URL, {
-    timeout: 60000,
-    waitUntil: "networkidle2",
-  })
+  await page.goto(AGENTS_PAGE_URL, NAVIGATION_OPTIONS)
   const html = await page.content()
 
   const $ = cheerio.load(html)
@@ -259,10 +280,7 @@ async function scrapeAgents(
 
 async function scrapeBangboos(browser: Browser) {
   const page = await browser.newPage()
-  await page.goto(BANGBOOS_PAGE_URL, {
-    timeout: 60000,
-    waitUntil: "networkidle2",
-  })
+  await page.goto(BANGBOOS_PAGE_URL, NAVIGATION_OPTIONS)
 
   const html = await page.content()
   const $ = cheerio.load(html)
@@ -304,10 +322,7 @@ async function scrapeBangboos(browser: Browser) {
 async function scrapeAgentDetail(page: Page, agentId: number) {
   const agentUrl = `${HAKUSH_URL}/character/${agentId}`
 
-  await page.goto(agentUrl, {
-    timeout: 60000,
-    waitUntil: "networkidle2",
-  })
+  await page.goto(agentUrl, NAVIGATION_OPTIONS)
   const html = await page.content()
   const $ = cheerio.load(html)
 
@@ -331,10 +346,7 @@ async function scrapeAgentDetail(page: Page, agentId: number) {
 async function scrapeBangbooDetail(page: Page, bangbooId: number) {
   const bangbooUrl = `${HAKUSH_URL}/bangboo/${bangbooId}`
 
-  await page.goto(bangbooUrl, {
-    timeout: 60000,
-    waitUntil: "networkidle2",
-  })
+  await page.goto(bangbooUrl, NAVIGATION_OPTIONS)
 
   const html = await page.content()
   const $ = cheerio.load(html)
@@ -357,3 +369,13 @@ async function scrapeBangbooDetail(page: Page, bangbooId: number) {
 }
 
 scrape()
+
+type DetailResult =
+  | {
+      type: "agent"
+      result: Awaited<ReturnType<typeof scrapeAgentDetail>>
+    }
+  | {
+      type: "bangboo"
+      result: Awaited<ReturnType<typeof scrapeBangbooDetail>>
+    }
