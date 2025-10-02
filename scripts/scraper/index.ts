@@ -5,6 +5,11 @@ import { fileURLToPath, URL } from "node:url"
 import * as cheerio from "cheerio"
 import pLimit from "p-limit"
 import puppeteer from "puppeteer"
+import {
+  ATTACK_TYPES,
+  ATTRIBUTES,
+  SPECIALTIES,
+} from "../../src/constants/shared"
 import { FACTIONS_MAP } from "./constants"
 import { PagePool } from "./page-pool"
 import { toCamelCase } from "./utils"
@@ -21,7 +26,16 @@ async function scrape() {
   const browser = await puppeteer.launch()
   const limit = pLimit(5)
 
-  const { commonImages, agents, agentIds } = await scrapeAgents(browser)
+  const commonImages: Record<string, Record<string, string>> = {
+    factions: {},
+    attributes: {},
+    ranks: {},
+    specialties: {},
+    attackTypes: {},
+  }
+
+  const { agents, agentIds } = await scrapeAgents(browser, commonImages)
+  processCommonImages(commonImages)
   console.log(`Found ${agentIds.length} agents`)
 
   const pages = await Promise.all(
@@ -64,7 +78,90 @@ async function scrape() {
   console.log("Done!")
 }
 
-async function scrapeAgents(browser: Browser) {
+function processCommonImages(
+  commonImages: Record<string, Record<string, string>>,
+) {
+  const factionImages = {
+    [FACTIONS_MAP.SilverSquad]:
+      "https://api.hakush.in/zzz/UI/IconCampSilvers.webp",
+  }
+
+  const rankImages = {
+    agentRankS:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/d/d0/Icon_AgentRank_S.png",
+    agentRankA:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/5/5c/Icon_AgentRank_A.png",
+    bangbooRankS:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/7/7d/Icon_Bangboo_Rank_S.png",
+    bangbooRankA:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/9/9a/Icon_Bangboo_Rank_A.png",
+    itemRankS:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/b/bf/Icon_Item_Rank_S.png",
+    itemRankA:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/45/Icon_Item_Rank_A.png",
+    itemRankB:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/4/47/Icon_Item_Rank_B.png",
+    itemRankC:
+      "https://static.wikia.nocookie.net/zenless-zone-zero/images/3/37/Icon_Item_Rank_C.png",
+  }
+
+  commonImages.factions = {
+    ...commonImages.factions,
+    ...factionImages,
+  }
+  commonImages.ranks = rankImages
+
+  const attributeKeys = new Set<string>(Object.values(ATTRIBUTES))
+  const specialtyKeys = new Set<string>(Object.values(SPECIALTIES))
+  const attackTypeKeys = new Set<string>(Object.values(ATTACK_TYPES))
+
+  const specialtyEntries: Record<string, string> = {}
+  const attackTypeEntries: Record<string, string> = {}
+
+  for (const [key, value] of Object.entries(commonImages.attributes)) {
+    if (attributeKeys.has(key)) {
+      continue
+    }
+
+    delete commonImages.attributes[key]
+
+    if (key === "attackType") {
+      specialtyEntries[SPECIALTIES.ATTACK] = value
+      continue
+    }
+
+    if (specialtyKeys.has(key)) {
+      specialtyEntries[key] = value
+      continue
+    }
+
+    if (attackTypeKeys.has(key)) {
+      attackTypeEntries[key] = value
+      continue
+    }
+
+    specialtyEntries[key] = value
+  }
+
+  if (Object.keys(specialtyEntries).length > 0) {
+    commonImages.specialties = {
+      ...commonImages.specialties,
+      ...specialtyEntries,
+    }
+  }
+
+  if (Object.keys(attackTypeEntries).length > 0) {
+    commonImages.attackTypes = {
+      ...commonImages.attackTypes,
+      ...attackTypeEntries,
+    }
+  }
+}
+
+async function scrapeAgents(
+  browser: Browser,
+  commonImages: Record<string, Record<string, string>>,
+) {
   const page = await browser.newPage()
   await page.goto(AGENTS_PAGE_URL, {
     timeout: 60000,
@@ -74,23 +171,25 @@ async function scrapeAgents(browser: Browser) {
 
   const $ = cheerio.load(html)
 
-  const commonImages: Record<string, string> = {}
   const filtersDiv = $("div#search-input-cont").next().next()
 
   filtersDiv.children().each((_, elem) => {
     const originId = $(elem).attr("id")
     if (originId) {
-      const id = originId.replace("filter-", "").replace("IconCamp", "")
+      const _id = originId.replace("filter-", "")
+      const isFaction = _id.includes("IconCamp")
+      const id = _id.replace("IconCamp", "")
       const imageUrl = $(elem).find("img").attr("src")
       if (imageUrl) {
         const key = id in FACTIONS_MAP ? FACTIONS_MAP[id] : toCamelCase(id)
-        commonImages[key] = imageUrl
+        if (isFaction) {
+          commonImages.factions[key] = imageUrl
+        } else {
+          commonImages.attributes[key] = imageUrl
+        }
       }
     }
   })
-
-  commonImages[FACTIONS_MAP.SilverSquad] =
-    "https://api.hakush.in/zzz/UI/IconCampSilvers.webp"
 
   const agents: Record<number, Record<string, any>> = {}
   const agentIds: number[] = []
@@ -114,7 +213,7 @@ async function scrapeAgents(browser: Browser) {
 
         if (attributeImageUrl) {
           const key = agentId === 1091 ? "frost" : "auricInk"
-          commonImages[key] = attributeImageUrl
+          commonImages.attributes[key] = attributeImageUrl
         }
       }
     }
@@ -122,7 +221,7 @@ async function scrapeAgents(browser: Browser) {
 
   await page.close()
 
-  return { commonImages, agents, agentIds }
+  return { agents, agentIds }
 }
 
 async function scrapeAgentDetail(page: Page, agentId: number) {

@@ -11,7 +11,7 @@ export const ATTRIBUTES = {
   /** 物理 */
   PHYSICAL: "physical",
   /** 玄墨 */
-  AURIC_INK: "auric ink",
+  AURIC_INK: "auricInk",
   /** 烈霜 */
   FROST: "frost",
 } as const
