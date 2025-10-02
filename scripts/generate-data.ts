@@ -19,6 +19,10 @@ const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
 const driveDiscsJsonPath = resolve(_dirname, "../src/data/drive-discs.json")
 
 const hakushAgentJsonPath = resolve(_dirname, "../src/data/hakush/agents.json")
+const hakushWEngineJsonPath = resolve(
+  _dirname,
+  "../src/data/hakush/w-engines.json",
+)
 const hakushBangbooJsonPath = resolve(
   _dirname,
   "../src/data/hakush/bangboos.json",
@@ -211,25 +215,42 @@ async function parseWEngines() {
   const sheet = workbook.getWorksheet("音擎属性")
 
   const wEngines: WEngine[] = []
+  const hakushWEnginesRaw = await readFile(hakushWEngineJsonPath, "utf-8")
+  const hakushWEngines = JSON.parse(hakushWEnginesRaw) as Record<
+    string,
+    {
+      avatar: string
+      sprite: string
+      rarity: string
+    }
+  >
+  const hakushCommonData = await getHakushCommonData()
 
   sheet?.eachRow((row, rowNumber) => {
     if (rowNumber > 1) {
       const name = row.getCell("A").value as string
       const id = row.getCell("B").value as number
-      const rank = row.getCell("C").value as string
+      const rarity = row.getCell("C").value as string
       const specialty = row.getCell("D").value as string
       const atk = normalizeNumericValue(row.getCell("F").value)
       const advancedStat = row.getCell("G").value as string
       const advancedStatValue = normalizeNumericValue(row.getCell("I").value)
+      const hakushWEngineData = hakushWEngines[id.toString()]
+      const rarityIcon = getWEngineRarityIcon(hakushCommonData, rarity)
+      const specialtyIcon = getSpecialtyIcon(hakushCommonData, specialty)
 
       wEngines.push({
         name,
         id,
-        rank,
+        rarity,
         specialty,
         atk,
         advancedStat,
         advancedStatValue,
+        avatar: hakushWEngineData?.avatar ?? "",
+        sprite: hakushWEngineData?.sprite ?? "",
+        rarityIcon,
+        specialtyIcon,
       })
     }
   })
@@ -422,6 +443,20 @@ function getBangbooRarityIcon(
 
   const rarities: Record<string, string> = commonData.rarities ?? {}
   const key = `bangbooRarity${rarity.toUpperCase()}`
+
+  return rarities[key] ?? ""
+}
+
+function getWEngineRarityIcon(
+  commonData: HakushCommonData,
+  rarity: string,
+): string {
+  if (!rarity) {
+    return ""
+  }
+
+  const rarities: Record<string, string> = commonData.rarities ?? {}
+  const key = `itemRarity${rarity.toUpperCase()}`
 
   return rarities[key] ?? ""
 }

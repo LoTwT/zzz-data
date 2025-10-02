@@ -5,11 +5,15 @@ export const WEngineSchema = z
   .object({
     name: z.string(),
     id: z.number(),
-    rank: z.string(),
+    rarity: z.string(),
     specialty: z.string(),
     atk: z.number(),
     advancedStat: z.string(),
     advancedStatValue: z.number(),
+    avatar: z.string(),
+    sprite: z.string(),
+    rarityIcon: z.string(),
+    specialtyIcon: z.string(),
   })
   .openapi("WEngine") satisfies z.ZodType<WEngine>
 
