@@ -10,7 +10,7 @@
     "prettier": "prettier --write .",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "parse-data": "tsx scripts/parse-data.ts",
+    "gen-data": "tsx scripts/generate-data.ts",
     "scrape": "tsx scripts/scraper/index.ts"
   },
   "dependencies": {

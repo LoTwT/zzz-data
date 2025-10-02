@@ -18,7 +18,7 @@ const wEngineJsonPath = resolve(_dirname, "../src/data/w-engines.json")
 const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
 const driveDiscsJsonPath = resolve(_dirname, "../src/data/drive-discs.json")
 
-async function parseData() {
+async function generateData() {
   await workbook.xlsx.readFile(resolve(_dirname, "../data.xlsx"))
 
   const tasks = [
@@ -240,7 +240,7 @@ async function parseDriveDiscs() {
   return driveDiscs
 }
 
-parseData()
+generateData()
 
 function normalizeNumericValue(value: CellValue | undefined): number {
   if (typeof value === "number") {
