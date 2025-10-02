@@ -9,6 +9,7 @@
     "up": "taze latest -I -f",
     "prettier": "prettier --write .",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "parse-data": "tsx scripts/parse-data.ts",
     "scrape": "tsx scripts/scraper/index.ts"
   },
