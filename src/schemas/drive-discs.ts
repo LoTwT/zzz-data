@@ -7,6 +7,8 @@ export const DriveDiscSchema = z
     name: z.string(),
     twoPieceBonus: z.string(),
     fourPieceBonus: z.string(),
+    avatar: z.string(),
+    sprite: z.string(),
   })
   .openapi("DriveDisc") satisfies z.ZodType<DriveDisc>
 

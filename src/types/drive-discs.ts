@@ -3,4 +3,7 @@ export interface DriveDisc {
   name: string
   twoPieceBonus: string
   fourPieceBonus: string
+
+  avatar: string
+  sprite: string
 }

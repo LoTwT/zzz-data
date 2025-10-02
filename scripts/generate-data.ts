@@ -27,6 +27,10 @@ const hakushBangbooJsonPath = resolve(
   _dirname,
   "../src/data/hakush/bangboos.json",
 )
+const hakushDriveDiscJsonPath = resolve(
+  _dirname,
+  "../src/data/hakush/drive-discs.json",
+)
 const hakushCommonJsonPath = resolve(_dirname, "../src/data/hakush/common.json")
 
 const attributeKeyMap: Record<string, string> = {
@@ -342,6 +346,14 @@ async function parseDriveDiscs() {
   const sheet = workbook.getWorksheet("驱动盘描述")
 
   const driveDiscs: DriveDisc[] = []
+  const hakushDriveDiscsRaw = await readFile(hakushDriveDiscJsonPath, "utf-8")
+  const hakushDriveDiscs = JSON.parse(hakushDriveDiscsRaw) as Record<
+    string,
+    {
+      avatar: string
+      sprite: string
+    }
+  >
 
   sheet?.eachRow((row, rowNumber) => {
     if (rowNumber > 1) {
@@ -351,11 +363,15 @@ async function parseDriveDiscs() {
       const fourPieceBonus = row.getCell("D").value as string
 
       if (id && name) {
+        const hakushDriveDiscData = hakushDriveDiscs[id.toString()]
+
         driveDiscs.push({
           id,
           name,
           twoPieceBonus: twoPieceBonus || "",
           fourPieceBonus: fourPieceBonus || "",
+          avatar: hakushDriveDiscData?.avatar ?? "",
+          sprite: hakushDriveDiscData?.sprite ?? "",
         })
       }
     }
