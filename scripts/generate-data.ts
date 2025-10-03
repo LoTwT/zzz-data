@@ -86,6 +86,7 @@ async function getHakushCommonData(): Promise<HakushCommonData> {
 }
 
 async function generateData() {
+  console.time("Data generation completed in")
   await workbook.xlsx.readFile(resolve(_dirname, "../data.xlsx"))
 
   const tasks = [
@@ -96,6 +97,7 @@ async function generateData() {
   ]
 
   await Promise.all(tasks)
+  console.timeEnd("Data generation completed in")
 }
 
 async function processAgents() {

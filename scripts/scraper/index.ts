@@ -41,10 +41,13 @@ const driveDiscsDataPath = resolve(
   "../../src/data/hakush/drive-discs.json",
 )
 
+const LIMIT = 10
+
 async function scrape() {
+  console.time("Scraping completed in")
   console.log("Starting scraper...")
   const browser = await puppeteer.launch()
-  const limit = pLimit(5)
+  const limit = pLimit(LIMIT)
 
   const commonImages: Record<string, Record<string, string>> = {
     factions: {},
@@ -77,7 +80,7 @@ async function scrape() {
 
   console.log("Preparing page pool for detail scraping...")
   const pages = await Promise.all(
-    Array.from({ length: 5 }, () => browser.newPage()),
+    Array.from({ length: LIMIT }, () => browser.newPage()),
   )
   const pagePool = new PagePool(pages)
 
@@ -207,6 +210,7 @@ async function scrape() {
 
   await browser.close()
   console.log("Done!")
+  console.timeEnd("Scraping completed in")
 }
 
 function processCommonImages(
