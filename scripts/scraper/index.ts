@@ -19,6 +19,7 @@ const AGENTS_PAGE_URL = `${HAKUSH_URL}/character`
 const BANGBOOS_PAGE_URL = `${HAKUSH_URL}/bangboo`
 const W_ENGINES_PAGE_URL = `${HAKUSH_URL}/weapon`
 const DRIVE_DISCS_PAGE_URL = `${HAKUSH_URL}/equipment`
+const DEADLY_ASSULTS_PAGE_URL = `${HAKUSH_URL}/boss`
 
 const NAVIGATION_OPTIONS = {
   timeout: 60000,
@@ -40,8 +41,12 @@ const driveDiscsDataPath = resolve(
   _dirname,
   "../../src/data/hakush/drive-discs.json",
 )
+const deadlyAssaultsDataPath = resolve(
+  _dirname,
+  "../../src/data/hakush/deadly-assaults.json",
+)
 
-const LIMIT = 10
+const LIMIT = 20
 
 async function scrape() {
   console.time("Scraping completed in")
@@ -58,18 +63,20 @@ async function scrape() {
   }
 
   console.log(
-    "Fetching listing pages for agents, bangboos, W-Engines, and Drive Discs...",
+    "Fetching listing pages for agents, bangboos, W-Engines, Drive Discs, and Deadly Assaults...",
   )
   const [
     { agents, agentIds },
     { bangboos, bangbooIds },
     { wEngines, wEngineIds },
     { driveDiscs, driveDiscIds },
+    { deadlyAssaults, deadlyAssaultIds },
   ] = await Promise.all([
     scrapeAgents(browser, commonImages),
     scrapeBangboos(browser),
     scrapeWEngines(browser),
     scrapeDriveDiscs(browser),
+    scrapeDeadlyAssults(browser),
   ])
 
   processCommonImages(commonImages)
@@ -77,6 +84,7 @@ async function scrape() {
   console.log(`Found ${bangbooIds.length} bangboos`)
   console.log(`Found ${wEngineIds.length} W-Engines`)
   console.log(`Found ${driveDiscIds.length} Drive Discs`)
+  console.log(`Found ${deadlyAssaultIds.length} Deadly Assaults`)
 
   console.log("Preparing page pool for detail scraping...")
   const pages = await Promise.all(
@@ -85,7 +93,7 @@ async function scrape() {
   const pagePool = new PagePool(pages)
 
   console.log(
-    "Scraping detail pages for agents, bangboos, W-Engines, and Drive Discs...",
+    "Scraping detail pages for agents, bangboos, W-Engines, Drive Discs, and Deadly Assaults...",
   )
 
   const detailTasks: Array<Promise<DetailResult>> = [
@@ -139,6 +147,7 @@ async function scrape() {
   let mergedBangbooDetails = 0
   let mergedWEngineDetails = 0
   let mergedDriveDiscDetails = 0
+  let mergedDeadlyAssaultDetails = 0
 
   try {
     const detailResults = await Promise.all(detailTasks)
@@ -171,7 +180,7 @@ async function scrape() {
             ...result.data,
           }
         }
-      } else {
+      } else if (detail.type === "driveDisc") {
         const { result } = detail
         if (result && result.driveDiscId) {
           mergedDriveDiscDetails += 1
@@ -182,12 +191,37 @@ async function scrape() {
         }
       }
     }
+
+    const deadlyAssaultDetailTasks = deadlyAssaultIds.map((deadlyAssaultId) =>
+      limit(async () => {
+        const page = await browser.newPage()
+        try {
+          return await scrapeDeadlyAssaultDetail(page, deadlyAssaultId)
+        } finally {
+          await page.close()
+        }
+      }),
+    )
+
+    const deadlyAssaultDetailResults = await Promise.all(
+      deadlyAssaultDetailTasks,
+    )
+
+    for (const result of deadlyAssaultDetailResults) {
+      if (result && result.deadlyAssaultId) {
+        mergedDeadlyAssaultDetails += 1
+        deadlyAssaults[result.deadlyAssaultId] = {
+          ...deadlyAssaults[result.deadlyAssaultId],
+          ...result.data,
+        }
+      }
+    }
   } finally {
     await pagePool.closeAll()
   }
 
   console.log(
-    `Scraped detail pages: ${mergedAgentDetails} agents, ${mergedBangbooDetails} bangboos, ${mergedWEngineDetails} W-Engines, ${mergedDriveDiscDetails} Drive Discs`,
+    `Scraped detail pages: ${mergedAgentDetails} agents, ${mergedBangbooDetails} bangboos, ${mergedWEngineDetails} W-Engines, ${mergedDriveDiscDetails} Drive Discs, ${mergedDeadlyAssaultDetails} Deadly Assaults`,
   )
 
   await mkdir(dirname(commonDataPath), { recursive: true })
@@ -206,6 +240,12 @@ async function scrape() {
   await writeFile(
     driveDiscsDataPath,
     `${JSON.stringify(driveDiscs, null, 2)}\n`,
+  )
+
+  await mkdir(dirname(deadlyAssaultsDataPath), { recursive: true })
+  await writeFile(
+    deadlyAssaultsDataPath,
+    `${JSON.stringify(deadlyAssaults, null, 2)}\n`,
   )
 
   await browser.close()
@@ -477,6 +517,51 @@ async function scrapeDriveDiscs(browser: Browser) {
   return { driveDiscs, driveDiscIds }
 }
 
+async function scrapeDeadlyAssults(browser: Browser) {
+  const page = await browser.newPage()
+  await page.goto(DEADLY_ASSULTS_PAGE_URL, NAVIGATION_OPTIONS)
+
+  const html = await page.content()
+  const $ = cheerio.load(html)
+
+  const deadlyAssaults: Record<number, Record<string, any>> = {}
+  const deadlyAssaultIds: number[] = []
+  const deadlyAssaultsDiv = $("main#main").find("div.grid").first()
+
+  deadlyAssaultsDiv.children().each((_, elem) => {
+    const href = $(elem).attr("href")
+
+    if (!href) {
+      return
+    }
+
+    const idSegment = href.split("/").pop()
+    const deadlyAssaultId = idSegment
+      ? Number.parseInt(idSegment, 10)
+      : Number.NaN
+
+    if (!Number.isFinite(deadlyAssaultId)) {
+      return
+    }
+
+    deadlyAssaultIds.push(deadlyAssaultId)
+    deadlyAssaults[deadlyAssaultId] = deadlyAssaults[deadlyAssaultId] || {}
+    deadlyAssaults[deadlyAssaultId].id = deadlyAssaultId
+
+    const period = $(elem).find("div").eq(2).text().trim()
+    if (period) {
+      deadlyAssaults[deadlyAssaultId].period = period
+    }
+  })
+
+  await page.close()
+
+  return {
+    deadlyAssaults,
+    deadlyAssaultIds,
+  }
+}
+
 async function scrapeAgentDetail(page: Page, agentId: number) {
   const agentUrl = `${AGENTS_PAGE_URL}/${agentId}`
 
@@ -596,6 +681,116 @@ async function scrapeDriveDiscDetail(page: Page, driveDiscId: number) {
     driveDiscId,
     data: {
       sprite: backgroundImageUrl,
+    },
+  }
+}
+
+async function scrapeDeadlyAssaultDetail(page: Page, deadlyAssaultId: number) {
+  const deadlyAssaultUrl = `${DEADLY_ASSULTS_PAGE_URL}/${deadlyAssaultId}`
+
+  await page.evaluateOnNewDocument(
+    ({ key, value }) => {
+      const storage = (globalThis as any).localStorage
+      if (storage) {
+        storage.setItem(key, value)
+      }
+    },
+    { key: "locale", value: "zh" },
+  )
+
+  await page.goto(deadlyAssaultUrl, NAVIGATION_OPTIONS)
+
+  const pageIndices = [1, 2, 3]
+  const enemies: Record<string, any>[] = []
+  const buffs: Record<string, any>[] = []
+
+  for (const index of pageIndices) {
+    const buttonSelector = `button[value="${index}"]`
+    await page.waitForSelector(buttonSelector)
+    await page.click(buttonSelector)
+    await page.waitForSelector(buttonSelector)
+    await extractEnemiesAndBuffs()
+  }
+
+  async function extractEnemiesAndBuffs() {
+    const html = await page.content()
+    const $ = cheerio.load(html)
+
+    const wrapperDiv = $("main#main")
+      .children()
+      .eq(2)
+      .children()
+      .first()
+      .children()
+      .first()
+      .children()
+      .last()
+
+    const enemyDetailsDiv = wrapperDiv.children().eq(5)
+    const enemyDetails = enemyDetailsDiv
+      .children()
+      .map((_, elem) => $(elem).html()?.trim() || "")
+      .get()
+
+    const mainContentDiv = wrapperDiv.children().eq(6)
+    if (buffs.length === 0) {
+      const currentBuffsDiv = mainContentDiv.children().first()
+      const buffDivs = [1, 2, 3].map((index) =>
+        currentBuffsDiv.children().eq(index),
+      )
+      buffDivs.forEach((buffDiv) => {
+        const buffName = buffDiv.children().first().text().trim()
+        const buffEffect = buffDiv.children().last().html()?.trim() || ""
+        if (buffName) {
+          buffs.push({
+            name: buffName,
+            effect: buffEffect,
+          })
+        }
+      })
+    }
+
+    const enemyIntelligenceWrapperDiv = mainContentDiv.children().eq(1)
+    const enemyIntelligenceA = enemyIntelligenceWrapperDiv
+      .children()
+      .eq(2)
+      .children()
+      .first()
+    const imageUrl = enemyIntelligenceA.find("img").first().attr("src")!
+
+    const enemyIntelligenceDetailDiv =
+      enemyIntelligenceWrapperDiv.find("div.text-left")
+    const textNodes = enemyIntelligenceDetailDiv
+      .contents()
+      .filter((_, node) => node.type === "text")
+
+    if (textNodes.length === 0) {
+      return
+    }
+
+    const enemyId = Number.parseInt(textNodes[0].data.trim().slice(1))
+
+    const [hp, atk, def] = [1, 2, 3]
+      .map((index) =>
+        enemyIntelligenceDetailDiv.find("label").eq(index).text().trim(),
+      )
+      .map((text) => Math.floor(Number.parseInt(text)))
+
+    enemies.push({
+      id: enemyId,
+      avatar: imageUrl,
+      details: enemyDetails,
+      hp,
+      atk,
+      def,
+    })
+  }
+
+  return {
+    deadlyAssaultId,
+    data: {
+      enemies,
+      buffs,
     },
   }
 }
