@@ -1,6 +1,7 @@
 export * from "./agents"
 export * from "./anomalies"
 export * from "./bangboos"
+export * from "./deadly-assaults"
 export * from "./drive-discs"
 export * from "./responses"
 export * from "./w-engines"

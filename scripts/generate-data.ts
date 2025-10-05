@@ -2,6 +2,12 @@ import type { CellFormulaValue, CellValue } from "exceljs"
 import type { Agent, WEngine } from "@/types"
 import type { Anomaly } from "@/types/anomalies"
 import type { Bangboo } from "@/types/bangboos"
+import type {
+  DeadlyAssault,
+  DeadlyAssaultEnemyAnomalyIds,
+  DeadlyAssaultEnemyResistance,
+  DeadlyAssaultEnemyResistanceValue,
+} from "@/types/deadly-assaults"
 import type { DriveDisc } from "@/types/drive-discs"
 import { readFile, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
@@ -19,6 +25,10 @@ const wEngineJsonPath = resolve(_dirname, "../src/data/w-engines.json")
 const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
 const driveDiscsJsonPath = resolve(_dirname, "../src/data/drive-discs.json")
 const anomaliesJsonPath = resolve(_dirname, "../src/data/anomalies.json")
+const deadlyAssaultsJsonPath = resolve(
+  _dirname,
+  "../src/data/deadly-assaults.json",
+)
 
 const hakushAgentJsonPath = resolve(_dirname, "../src/data/hakush/agents.json")
 const hakushWEngineJsonPath = resolve(
@@ -34,6 +44,18 @@ const hakushDriveDiscJsonPath = resolve(
   "../src/data/hakush/drive-discs.json",
 )
 const hakushCommonJsonPath = resolve(_dirname, "../src/data/hakush/common.json")
+const hakushDeadlyAssaultJsonPath = resolve(
+  _dirname,
+  "../src/data/hakush/deadly-assaults.json",
+)
+
+const deadlyAssaultAttributeKeys = [
+  "ice",
+  "fire",
+  "electric",
+  "physical",
+  "ether",
+] as const satisfies readonly (keyof DeadlyAssaultEnemyAnomalyIds)[]
 
 const attributeKeyMap: Record<string, string> = {
   电: "electric",
@@ -97,6 +119,7 @@ async function generateData() {
     processBangboos(),
     processDriveDiscs(),
     processAnomalies(),
+    processDeadlyAssaults(),
   ]
 
   await Promise.all(tasks)
@@ -453,6 +476,194 @@ async function parseAnomalies(): Promise<Anomaly[]> {
   })
 
   return anomalies
+}
+
+async function processDeadlyAssaults() {
+  const deadlyAssaults = await parseDeadlyAssaults()
+
+  const deadlyAssaultsJson = {
+    deadlyAssaults,
+  }
+
+  await writeFile(
+    deadlyAssaultsJsonPath,
+    `${JSON.stringify(deadlyAssaultsJson, null, 2)}\n`,
+  )
+}
+
+async function parseDeadlyAssaults(): Promise<DeadlyAssault[]> {
+  const raw = await readFile(hakushDeadlyAssaultJsonPath, "utf-8")
+  const hakushDeadlyAssaults = JSON.parse(raw) as Record<string, any>
+
+  const sheet = workbook.getWorksheet("敌人属性")
+  const sheetDataMap = new Map<
+    number,
+    {
+      resistance: DeadlyAssaultEnemyResistance
+      anomalyIds: DeadlyAssaultEnemyAnomalyIds
+    }
+  >()
+
+  if (sheet) {
+    sheet.eachRow((row, rowNumber) => {
+      if (rowNumber === 1) {
+        return
+      }
+
+      const indexId = extractNumericValue(row.getCell(2).value)
+      if (indexId === null) {
+        return
+      }
+
+      const resistance: DeadlyAssaultEnemyResistance = {
+        damage: readDeadlyAssaultResistanceValue(row, 20),
+        anomalyBuildup: readDeadlyAssaultResistanceValue(row, 25),
+        daze: readDeadlyAssaultResistanceValue(row, 30),
+      }
+
+      const anomalyIds = readDeadlyAssaultAnomalyIds(row, 35)
+
+      sheetDataMap.set(indexId, { resistance, anomalyIds })
+    })
+  }
+
+  const deadlyAssaults: DeadlyAssault[] = Object.values(hakushDeadlyAssaults)
+    .map((value) => {
+      const assault = value as any
+
+      const enemiesSource = Array.isArray(assault?.enemies)
+        ? assault.enemies
+        : []
+      const enemies = enemiesSource.map((enemyValue: any) => {
+        const enemy = enemyValue ?? {}
+        const sheetData = sheetDataMap.get(enemy.id)
+        const resistance =
+          sheetData?.resistance ?? createEmptyDeadlyAssaultResistance()
+        const anomalyIds =
+          sheetData?.anomalyIds ?? createEmptyDeadlyAssaultAnomalyIds()
+
+        const detailsSource = Array.isArray(enemy.details) ? enemy.details : []
+
+        return {
+          id: toNumber(enemy.id),
+          avatar: typeof enemy.avatar === "string" ? enemy.avatar : "",
+          details: detailsSource.map((detail: any) =>
+            typeof detail === "string" ? detail : String(detail ?? ""),
+          ),
+          ht: toNumber(enemy.hp),
+          atk: toNumber(enemy.atk),
+          def: toNumber(enemy.def),
+          resistance,
+          anomalyIds,
+        }
+      })
+
+      const buffsSource = Array.isArray(assault?.buffs) ? assault.buffs : []
+      const buffs = buffsSource.map((buffValue: any) => {
+        const buff = buffValue ?? {}
+        return {
+          name: typeof buff.name === "string" ? buff.name : "",
+          effect: typeof buff.effect === "string" ? buff.effect : "",
+        }
+      })
+
+      return {
+        id: toNumber(assault?.id),
+        period: typeof assault?.period === "string" ? assault.period : "",
+        enemies,
+        buffs,
+      }
+    })
+    .sort((a, b) => a.id - b.id)
+
+  return deadlyAssaults
+}
+
+function readDeadlyAssaultResistanceValue(
+  row: exceljs.Row,
+  startColumn: number,
+): DeadlyAssaultEnemyResistanceValue {
+  const value = createEmptyDeadlyAssaultResistanceValue()
+
+  deadlyAssaultAttributeKeys.forEach((key, offset) => {
+    const cellValue = row.getCell(startColumn + offset).value as
+      | CellValue
+      | undefined
+    value[key] = normalizeNumericValue(cellValue)
+  })
+
+  return value
+}
+
+function readDeadlyAssaultAnomalyIds(
+  row: exceljs.Row,
+  startColumn: number,
+): DeadlyAssaultEnemyAnomalyIds {
+  const anomalyIds = createEmptyDeadlyAssaultAnomalyIds()
+
+  deadlyAssaultAttributeKeys.forEach((key, offset) => {
+    const cellValue = row.getCell(startColumn + offset).value as
+      | CellValue
+      | undefined
+    anomalyIds[key] = extractNumericValue(cellValue) ?? 0
+  })
+
+  return anomalyIds
+}
+
+function createEmptyDeadlyAssaultResistanceValue(): DeadlyAssaultEnemyResistanceValue {
+  return {
+    ice: 0,
+    fire: 0,
+    electric: 0,
+    physical: 0,
+    ether: 0,
+  }
+}
+
+function createEmptyDeadlyAssaultResistance(): DeadlyAssaultEnemyResistance {
+  return {
+    damage: createEmptyDeadlyAssaultResistanceValue(),
+    anomalyBuildup: createEmptyDeadlyAssaultResistanceValue(),
+    daze: createEmptyDeadlyAssaultResistanceValue(),
+  }
+}
+
+function createEmptyDeadlyAssaultAnomalyIds(): DeadlyAssaultEnemyAnomalyIds {
+  return {
+    ice: 0,
+    fire: 0,
+    electric: 0,
+    physical: 0,
+    ether: 0,
+  }
+}
+
+function toNumber(value: unknown): number {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value
+  }
+
+  if (typeof value === "string") {
+    const parsed = Number(value.trim())
+    return Number.isFinite(parsed) ? parsed : 0
+  }
+
+  if (
+    value &&
+    typeof value === "object" &&
+    "result" in value &&
+    typeof (value as { result?: unknown }).result === "number"
+  ) {
+    const { result } = value as { result?: unknown }
+
+    if (typeof result === "number" && Number.isFinite(result)) {
+      return result
+    }
+  }
+
+  const fallback = Number(value)
+  return Number.isFinite(fallback) ? fallback : 0
 }
 
 function getAttributeIcon(

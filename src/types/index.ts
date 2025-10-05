@@ -1,4 +1,5 @@
 export * from "./agents"
 export * from "./anomalies"
+export * from "./deadly-assaults"
 export * from "./shared"
 export * from "./w-engines"
