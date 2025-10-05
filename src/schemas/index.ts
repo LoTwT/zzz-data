@@ -1,4 +1,5 @@
 export * from "./agents"
+export * from "./anomalies"
 export * from "./bangboos"
 export * from "./drive-discs"
 export * from "./responses"

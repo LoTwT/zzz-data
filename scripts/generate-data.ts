@@ -1,5 +1,6 @@
 import type { CellFormulaValue, CellValue } from "exceljs"
 import type { Agent, WEngine } from "@/types"
+import type { Anomaly } from "@/types/anomalies"
 import type { Bangboo } from "@/types/bangboos"
 import type { DriveDisc } from "@/types/drive-discs"
 import { readFile, writeFile } from "node:fs/promises"
@@ -17,6 +18,7 @@ const agentJsonPath = resolve(_dirname, "../src/data/agents.json")
 const wEngineJsonPath = resolve(_dirname, "../src/data/w-engines.json")
 const bangboosJsonPath = resolve(_dirname, "../src/data/bangboos.json")
 const driveDiscsJsonPath = resolve(_dirname, "../src/data/drive-discs.json")
+const anomaliesJsonPath = resolve(_dirname, "../src/data/anomalies.json")
 
 const hakushAgentJsonPath = resolve(_dirname, "../src/data/hakush/agents.json")
 const hakushWEngineJsonPath = resolve(
@@ -94,6 +96,7 @@ async function generateData() {
     processWEngines(),
     processBangboos(),
     processDriveDiscs(),
+    processAnomalies(),
   ]
 
   await Promise.all(tasks)
@@ -382,6 +385,76 @@ async function parseDriveDiscs() {
   return driveDiscs
 }
 
+async function processAnomalies() {
+  const anomalies = await parseAnomalies()
+
+  const anomaliesJson = {
+    anomalies,
+  }
+
+  await writeFile(
+    anomaliesJsonPath,
+    `${JSON.stringify(anomaliesJson, null, 2)}\n`,
+  )
+}
+
+async function parseAnomalies(): Promise<Anomaly[]> {
+  const sheet = workbook.getWorksheet("异常条")
+
+  if (!sheet) {
+    return []
+  }
+
+  const hakushCommonData = await getHakushCommonData()
+  const anomalies: Anomaly[] = []
+  const firstRequirementColumn = 6
+  const lastRequirementColumn = 15
+
+  sheet.eachRow((row, rowNumber) => {
+    if (rowNumber === 1) {
+      return
+    }
+
+    const idValue = extractNumericValue(row.getCell(1).value)
+    if (idValue === null) {
+      return
+    }
+
+    const attributeCell = row.getCell(2).value
+    const attribute = typeof attributeCell === "string" ? attributeCell : ""
+    const anomalyId = extractNumericValue(row.getCell(3).value) ?? 0
+    const noteCell = row.getCell(4).value
+    const note = typeof noteCell === "string" ? noteCell : ""
+    const cd = extractNumericValue(row.getCell(5).value) ?? 0
+
+    const accumulationRequirements: number[] = []
+    for (
+      let column = firstRequirementColumn;
+      column <= lastRequirementColumn;
+      column += 1
+    ) {
+      const requirement = extractNumericValue(row.getCell(column).value)
+      if (requirement !== null) {
+        accumulationRequirements.push(requirement)
+      }
+    }
+
+    const attributeIcon = getAttributeIcon(hakushCommonData, attribute)
+
+    anomalies.push({
+      id: idValue,
+      attribute,
+      anomalyId,
+      note,
+      cd,
+      accumulationRequirements,
+      attributeIcon,
+    })
+  })
+
+  return anomalies
+}
+
 function getAttributeIcon(
   commonData: HakushCommonData,
   attribute: string,
@@ -511,9 +584,14 @@ function normalizeAttackTypeKey(attackType: string): string | undefined {
 
 generateData()
 
-function normalizeNumericValue(value: CellValue | undefined): number {
+function extractNumericValue(value: CellValue | undefined): number | null {
   if (typeof value === "number") {
-    return value
+    return Number.isFinite(value) ? value : null
+  }
+
+  if (typeof value === "string") {
+    const parsed = Number(value.trim())
+    return Number.isFinite(parsed) ? parsed : null
   }
 
   if (
@@ -525,12 +603,21 @@ function normalizeNumericValue(value: CellValue | undefined): number {
     const formulaValue = value as CellFormulaValue
     const { result } = formulaValue
 
-    if (typeof result === "number") {
+    if (typeof result === "number" && Number.isFinite(result)) {
       return result
     }
   }
 
-  return 0
+  return null
+}
+
+function normalizeNumericValue(value: CellValue | undefined): number {
+  const numericValue = extractNumericValue(value)
+  if (numericValue === null) {
+    return 0
+  }
+
+  return numericValue
 }
 
 interface HakushCommonData {
