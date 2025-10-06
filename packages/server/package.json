@@ -1,7 +1,7 @@
 {
   "name": "zzz-data-server",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@10.18.1",
   "scripts": {
     "dev": "wrangler dev",

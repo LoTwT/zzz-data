@@ -1,7 +1,7 @@
 {
   "name": "zzz-data",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@10.18.1",
   "description": "zzz data",
   "author": "LoTwT <l709937065@gmail.com>",
