@@ -1,39 +1,31 @@
 {
-  "name": "zzz-data",
+  "name": "zzz-data-monorepo",
   "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.18.1",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "prepare": "simple-git-hooks",
     "up": "taze latest -I -f",
     "prettier": "prettier --write .",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "gen-data": "tsx scripts/generate-data.ts",
-    "scrape": "tsx scripts/scraper/index.ts"
-  },
-  "dependencies": {
-    "@hono/swagger-ui": "^0.5.2",
-    "@hono/zod-openapi": "^1.1.3",
-    "zod": "^4.1.11"
+    "data:build": "pnpm -C packages/zzz-data run build",
+    "data:scrape": "pnpm -C packages/zzz-data run scrape",
+    "data:generate": "pnpm -C packages/zzz-data run generate",
+    "data:release": "pnpm -C packages/zzz-data run release",
+    "server:dev": "pnpm -C packages/server run dev",
+    "server:deploy": "pnpm -C packages/server run deploy",
+    "release": "bumpp && pnpm run data:release"
   },
   "devDependencies": {
     "@ayingott/eslint-config": "^2.0.7",
     "@ayingott/prettier-config": "^2.1.8",
-    "@types/node": "^24.6.2",
-    "cheerio": "^1.1.2",
+    "bumpp": "^10.3.1",
     "eslint": "^9.37.0",
-    "exceljs": "^4.4.0",
-    "hono": "latest",
     "lint-staged": "^16.2.3",
-    "p-limit": "^7.1.1",
+    "pnpm": "^10.18.1",
     "prettier": "^3.6.2",
-    "puppeteer": "^24.23.0",
     "simple-git-hooks": "^2.13.1",
-    "taze": "^19.7.0",
-    "tsx": "^4.20.6",
-    "wrangler": "^4.42.0"
+    "taze": "^19.7.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged"
