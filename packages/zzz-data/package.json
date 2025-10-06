@@ -42,7 +42,7 @@
     "build": "tsdown",
     "generate": "tsx ./scripts/generate.ts",
     "scrape": "tsx ./scripts/scraper/index.ts",
-    "release": "pnpm publish"
+    "release": "pnpm run build && pnpm publish"
   },
   "devDependencies": {
     "@types/node": "^24.7.0",
