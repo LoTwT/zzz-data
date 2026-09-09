@@ -7,6 +7,38 @@ import {
 } from "../src/index.ts"
 
 describe("baseAdrenalineGenerationFactor", () => {
+  it("reads indexed generation values instead of a custom iterator", () => {
+    const values = [10]
+    Object.defineProperty(values, Symbol.iterator, {
+      value: function* () {
+        yield 0
+      },
+    })
+    expect(
+      baseAdrenalineGenerationFactor.calculate({
+        baseAdrenalineGenerationValues: values,
+        finalAdrenalineRegen: 2,
+        effectiveAdrenalineRegenDurationInSeconds: 3,
+      }),
+    ).toBe(16)
+  })
+
+  it("rejects a non-finite indexed value hidden by an iterator", () => {
+    const values = [NaN]
+    Object.defineProperty(values, Symbol.iterator, {
+      value: function* () {
+        yield 0
+      },
+    })
+    expect(() =>
+      baseAdrenalineGenerationFactor.calculate({
+        baseAdrenalineGenerationValues: values,
+        finalAdrenalineRegen: 0,
+        effectiveAdrenalineRegenDurationInSeconds: 0,
+      }),
+    ).toThrow(RangeError)
+  })
+
   it("exposes its public identity and types", () => {
     expectTypeOf<BaseAdrenalineGenerationFactorInput>().toEqualTypeOf<{
       readonly baseAdrenalineGenerationValues: readonly number[]

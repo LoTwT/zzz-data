@@ -10,6 +10,28 @@ import {
 } from "../src/index.ts"
 
 describe("decibelGenerationRateFactor", () => {
+  it("reads indexed contributions instead of a custom iterator", () => {
+    const contributions = [0.5]
+    Object.defineProperty(contributions, Symbol.iterator, {
+      value: function* () {
+        yield 2
+      },
+    })
+    expect(decibelGenerationRateFactor.calculate(contributions)).toBe(1.5)
+  })
+
+  it("rejects a non-finite indexed contribution hidden by an iterator", () => {
+    const contributions = [NaN]
+    Object.defineProperty(contributions, Symbol.iterator, {
+      value: function* () {
+        yield 0
+      },
+    })
+    expect(() => decibelGenerationRateFactor.calculate(contributions)).toThrow(
+      RangeError,
+    )
+  })
+
   it("exposes its public identity and types", () => {
     expectTypeOf<DecibelGenerationRateFactorInput>().toEqualTypeOf<
       readonly number[]

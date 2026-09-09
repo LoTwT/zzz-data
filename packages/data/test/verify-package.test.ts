@@ -14,6 +14,9 @@ import { afterEach, describe, expect, it } from "vitest"
 
 const testDirectory = dirname(fileURLToPath(import.meta.url))
 const packageDirectory = join(testDirectory, "..")
+const workspacePackageManager = JSON.parse(
+  readFileSync(join(packageDirectory, "..", "..", "package.json"), "utf8"),
+).packageManager
 const temporaryDirectories: string[] = []
 
 afterEach(() => {
@@ -74,6 +77,7 @@ describe("packed package", () => {
           name: "randomplay-data-packed-consumer",
           private: true,
           type: "module",
+          packageManager: workspacePackageManager,
           dependencies: {
             "@randomplay/data": `file:${relative(consumerDirectory, tarballPath)}`,
           },

@@ -8,8 +8,10 @@ import {
   parseInteractiveSelection,
 } from "../scripts/nanoka-source.ts"
 import {
-  buildEntityDetailUrl,
+  decodeUtf8Json,
+  buildManifestUrl,
   buildEntityIndexUrl,
+  buildEntityDetailUrl,
   loadSourcePolicy,
   selectVersion,
   validateAllowedUrl,
@@ -25,6 +27,41 @@ const manifest = validateManifest({
 })
 
 describe("Nanoka version policy", () => {
+  it.each(["username", "password", "port", "search", "hash"] as const)(
+    "rejects forbidden URL component %s for manifests and data",
+    async (component) => {
+      const policy = await loadSourcePolicy()
+      for (const kind of ["manifest", "data"] as const) {
+        const url =
+          kind === "manifest"
+            ? buildManifestUrl(policy)
+            : buildEntityIndexUrl(policy, "3.0", "character")
+        const values = {
+          username: "user",
+          password: "password",
+          port: "444",
+          search: "?extra=1",
+          hash: "#fragment",
+        }
+        url[component] = values[component]
+        expect(() => validateAllowedUrl(policy, url, kind)).toThrow(
+          "不允许的组成部分",
+        )
+      }
+    },
+  )
+
+  it("rejects malformed UTF-8 even when replacement would form valid JSON", () => {
+    const invalidUtf8 = new Uint8Array([123, 34, 120, 34, 58, 34, 255, 34, 125])
+    expect(() => decodeUtf8Json(invalidUtf8, "fixture")).toThrow(
+      "不是有效 UTF-8",
+    )
+  })
+
+  it("rejects unknown command arguments", () => {
+    expect(() => parseArguments(["fetch", "--unknown"])).toThrow("未知参数")
+  })
+
   it("selects channels and explicit available versions without fallback", () => {
     expect(selectVersion(manifest, { channel: "live" })).toEqual({
       version: "3.0",

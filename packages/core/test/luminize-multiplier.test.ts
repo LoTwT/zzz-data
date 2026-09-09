@@ -155,6 +155,23 @@ describe("luminizeMultiplierFactor", () => {
     },
   )
 
+  it("rejects a sparse hole even when its prototype supplies a number", () => {
+    const multiplicativeLuminizeMultiplierAdjustments: number[] = []
+    multiplicativeLuminizeMultiplierAdjustments.length = 1
+    const inheritedValues = Object.assign(Object.create(Array.prototype), {
+      0: 0.2,
+    })
+    Object.setPrototypeOf(
+      multiplicativeLuminizeMultiplierAdjustments,
+      inheritedValues,
+    )
+    expect(() =>
+      luminizeMultiplierFactor.calculate(
+        createInput({ multiplicativeLuminizeMultiplierAdjustments }),
+      ),
+    ).toThrow(TypeError)
+  })
+
   it("rejects a sparse multiplier adjustment array", () => {
     const multiplicativeLuminizeMultiplierAdjustments = [0]
     delete multiplicativeLuminizeMultiplierAdjustments[0]

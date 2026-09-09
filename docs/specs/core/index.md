@@ -1,5 +1,7 @@
 # Core 计算规范
 
+下文 Nanoka 资源路径及 JSON Pointer 遵循[本地观察引用约定](../nanoka/source.md#本地观察引用)，仅用于定位既有观察，不是仓库文件链接或可复现快照。
+
 ## 术语
 
 | 中文术语 | 英文标识        | 规范定义                                                                       | 类别      |
@@ -17,8 +19,8 @@
 失衡相关中英文术语以 Nanoka 3.1 中同一数据路径的中英文游戏文本为依据。例如雨果的同一段技能文本同时
 使用了 `Stun`、`Stunned`、`Stun time`、`Daze` 和 `maximum Daze`，对应中文中的击破特性、失衡状态、
 失衡时间、失衡值和失衡值上限。代表性文本见
-[英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1291.json#L2067)与
-[中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1291.json#L2067)。
+英文数据（本地观察：`zzz/3.1/en/character/1291.json`，JSON Pointer `/passive/level/1291501/desc/0`）与
+中文数据（本地观察：`zzz/3.1/zh/character/1291.json`，JSON Pointer `/passive/level/1291501/desc/0`）。
 
 | 中文术语     | 英文标识                 | 规范定义                                                                                                               | 类别     |
 | ------------ | ------------------------ | ---------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -33,8 +35,8 @@
 当前 core 不对代理人特性建模，因此不把它增加为公开计算术语或公式输入。`Stun DMG Multiplier` 等已经
 确认的完整复合术语不受该限制。
 
-特佩什图鉴的[英文文本](../../../packages/data/raw/nanoka/3.1/en/monster/930166.json#L508)使用
-`Daze Vulnerability`，同路径[中文文本](../../../packages/data/raw/nanoka/3.1/zh/monster/930166.json#L508)
+特佩什图鉴的英文文本（本地观察：`zzz/3.1/en/monster/930166.json`，JSON Pointer `/card_skill_desc`）使用
+`Daze Vulnerability`，同路径中文文本（本地观察：`zzz/3.1/zh/monster/930166.json`，JSON Pointer `/card_skill_desc`）
 称为“失衡易伤效果”。结合[攻略对该机制的说明](../../references/zzz-data-introduction.txt#L140)，该处表示
 `Stun DMG Multiplier` 提高，不表示 `Daze taken`。这项特殊文本只用于数据解释，不增加为 core 公开标识。
 
@@ -47,17 +49,17 @@ core 公开命名的依据，也不能不经语义转换直接作为 core 输入
 能量相关术语以 Nanoka 3.1 中同一路径的中英文游戏文本为依据：
 
 - 邦布技能属性中的 `Energy Generation` 对应“能量回复”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/bangboo/53012.json#L154)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/bangboo/53012.json#L154)；
+  英文数据（本地观察：`zzz/3.1/en/bangboo/53012.json`，JSON Pointer `/skill/a/level/7/property/0`）与
+  中文数据（本地观察：`zzz/3.1/zh/bangboo/53012.json`，JSON Pointer `/skill/a/level/7/property/0`）；
 - `Base Energy Regen` 对应“基础能量自动回复”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1271.json#L169)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1271.json#L169)；
+  英文数据（本地观察：`zzz/3.1/en/character/1271.json`，JSON Pointer `/extra_level/1/extra/30501/name`）与
+  中文数据（本地观察：`zzz/3.1/zh/character/1271.json`，JSON Pointer `/extra_level/1/extra/30501/name`）；
 - `Energy Regen` 对应“能量自动回复”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/weapon/14130.json#L20)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/weapon/14130.json#L20)；
+  英文数据（本地观察：`zzz/3.1/en/weapon/14130.json`，JSON Pointer `/rand_property/name`）与
+  中文数据（本地观察：`zzz/3.1/zh/weapon/14130.json`，JSON Pointer `/rand_property/name`）；
 - `Energy Generation Rate` 对应“能量获得效率”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/weapon/13011.json#L362)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/weapon/13011.json#L362)。
+  英文数据（本地观察：`zzz/3.1/en/weapon/13011.json`，JSON Pointer `/talents/1/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/weapon/13011.json`，JSON Pointer `/talents/1/desc`）。
 
 | 中文术语         | 英文标识                 | 规范定义                                                                     | 类别     |
 | ---------------- | ------------------------ | ---------------------------------------------------------------------------- | -------- |
@@ -79,11 +81,11 @@ Nanoka 原始数据中的 `sp_recovery` 字段在中英文数据中保持相同�
 闪能相关术语同样以 Nanoka 3.1 中同一路径的中英文游戏文本为依据：
 
 - `Adrenaline` 对应“闪能”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1051.json#L1075)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1051.json#L1075)；
+  英文数据（本地观察：`zzz/3.1/en/character/1051.json`，JSON Pointer `/skill/special/description/1/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/character/1051.json`，JSON Pointer `/skill/special/description/1/desc`）；
 - `Adrenaline Generation Rate` 对应“闪能获得效率”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/simul/102.json#L104)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/simul/102.json#L104)。
+  英文数据（本地观察：`zzz/3.1/en/simul/102.json`，JSON Pointer `/node/10202/battle/1020201/selectable_buff/69011301/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/simul/102.json`，JSON Pointer `/node/10202/battle/1020201/selectable_buff/69011301/desc`）。
 
 | 中文术语     | 英文标识                     | 规范定义                                                                   | 类别     |
 | ------------ | ---------------------------- | -------------------------------------------------------------------------- | -------- |
@@ -91,15 +93,15 @@ Nanoka 原始数据中的 `sp_recovery` 字段在中英文数据中保持相同�
 | 闪能获得效率 | `Adrenaline Generation Rate` | 对确认适用该属性的闪能累积进行倍率缩放的效率；具体乘区结果包含基础倍率 `1` | 游戏文本 |
 
 部分中文角色文本将 `Adrenaline Generation Rate` 写为“闪能回复效率”，见
-[英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1441.json#L2234)与
-[中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1441.json#L2234)。两种中文描述指向同一个英文
+英文数据（本地观察：`zzz/3.1/en/character/1441.json`，JSON Pointer `/passive/level/1441501/desc/0`）与
+中文数据（本地观察：`zzz/3.1/zh/character/1441.json`，JSON Pointer `/passive/level/1441501/desc/0`）。两种中文描述指向同一个英文
 属性，本规范以攻略使用的“闪能获得效率”为主称，不建立第二个乘区。英文描述还可能依句式使用 `gain`、
 `recover` 或 `restore Adrenaline`，这些自然语言变体不建立额外 core 术语。
 
 Nanoka 3.1 没有提供 `Adrenaline Generation` 作为整体闪能增加量固定标签的直接对照。技能描述中存在
 `Adrenaline regen of 0.5/s` 对应“持续回复闪能，每秒回复 0.5 点”的自然语言用法，见
-[英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1051.json#L2267)与
-[中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1051.json#L2267)，但这不能证明
+英文数据（本地观察：`zzz/3.1/en/character/1051.json`，JSON Pointer `/talent/2/desc`）与
+中文数据（本地观察：`zzz/3.1/zh/character/1051.json`，JSON Pointer `/talent/2/desc`），但这不能证明
 `Adrenaline Regen` 是固定面板属性名称。`AdrenalineGeneration`、`BaseAdrenalineGeneration` 和
 `finalAdrenalineRegen` 是 core 根据攻略公式建立的规范化标识；具体计算语义由对应乘区和公式规范维护。
 
@@ -111,14 +113,14 @@ Nanoka 原始数据中的 `rp_recover`、`rp_recovery` 等字段属于数据层�
 喧响相关术语以 Nanoka 3.1 中同一路径的中英文游戏文本为依据：
 
 - 同一段技能描述中的 `Decibel Rating` 对应“喧响等级”，`Decibels` 对应可消耗的“喧响值”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1051.json#L1415)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1051.json#L1415)；
+  英文数据（本地观察：`zzz/3.1/en/character/1051.json`，JSON Pointer `/skill/chain/description/1/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/character/1051.json`，JSON Pointer `/skill/chain/description/1/desc`）；
 - `Decibel Generation Rate` 对应“喧响值获得效率”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/boss/69001.json#L863)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/boss/69001.json#L863)；
+  英文数据（本地观察：`zzz/3.1/en/boss/69001.json`，JSON Pointer `/modes/0/zone/6900101/selectable_buff/69010102/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/boss/69001.json`，JSON Pointer `/modes/0/zone/6900101/selectable_buff/69010102/desc`）；
 - 部分中文游戏文本将同一个 `Decibel Generation Rate` 属性写为“喧响值获取效率”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/simul/101.json#L329)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/simul/101.json#L329)。
+  英文数据（本地观察：`zzz/3.1/en/simul/101.json`，JSON Pointer `/node/10104/battle/1010401/selectable_buff/69010502/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/simul/101.json`，JSON Pointer `/node/10104/battle/1010401/selectable_buff/69010502/desc`）。
 
 | 中文术语           | 英文标识                            | 规范定义                                                                                              | 类别      |
 | ------------------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------- | --------- |
@@ -139,17 +141,17 @@ Nanoka 原始数据中的 `rp_recover`、`rp_recovery` 等字段属于数据层�
 秽盾相关术语以 Nanoka 3.1 中同一路径的中英文游戏文本为依据：
 
 - `Miasmic Shield` 对应“秽盾”，同一段文本还使用 `Miasmic Field` 对应“秽浊流界”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/monster/40000.json#L1503)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/monster/40000.json#L1503)；
+  英文数据（本地观察：`zzz/3.1/en/monster/40000.json`，JSON Pointer `/card_skill_desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/monster/40000.json`，JSON Pointer `/card_skill_desc`）；
 - 自由文案中的 `reduces Miasma Shield 30% faster` 对应“造成的秽息盾削减值提升 30%”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/boss/690431.json#L867)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/boss/690431.json#L867)；
+  英文数据（本地观察：`zzz/3.1/en/boss/690431.json`，JSON Pointer `/modes/0/zone/69043201/selectable_buff/69013604/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/boss/690431.json`，JSON Pointer `/modes/0/zone/69043201/selectable_buff/69013604/desc`）；
 - `the reduction efficiency of Miasmic Shield` 对应“秽盾被削减效率”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/boss/69025.json#L957)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/boss/69025.json#L957)；
+  英文数据（本地观察：`zzz/3.1/en/boss/69025.json`，JSON Pointer `/modes/0/zone/6902503/layer_buff/69011602/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/boss/69025.json`，JSON Pointer `/modes/0/zone/6902503/layer_buff/69011602/desc`）；
 - `Miasmic Shield Purification` 对应“秽盾净除”，见
-  [英文数据](../../../packages/data/raw/nanoka/3.1/en/boss/69040.json#L886)与
-  [中文数据](../../../packages/data/raw/nanoka/3.1/zh/boss/69040.json#L886)。
+  英文数据（本地观察：`zzz/3.1/en/boss/69040.json`，JSON Pointer `/modes/0/zone/6904002/layer_buff/69012705/desc`）与
+  中文数据（本地观察：`zzz/3.1/zh/boss/69040.json`，JSON Pointer `/modes/0/zone/6904002/layer_buff/69012705/desc`）。
 
 | 中文术语       | 英文标识                          | 规范定义                                                                        | 类别      |
 | -------------- | --------------------------------- | ------------------------------------------------------------------------------- | --------- |
@@ -165,8 +167,8 @@ Nanoka 原始数据中的 `rp_recover`、`rp_recovery` 等字段属于数据层�
 PascalCase 名称都是 core 根据攻略公式和语义边界建立的规范化标识，不能反向视为游戏提供的固定英文标签。
 
 部分游戏文本还使用 `Miasma purification rate` 对应“秽息净化效率”，见
-[英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1431.json#L16)与
-[中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1431.json#L16)。该词组是造成侧秽盾削减效率的
+英文数据（本地观察：`zzz/3.1/en/character/1431.json`，JSON Pointer `/special_element_type/desc`）与
+中文数据（本地观察：`zzz/3.1/zh/character/1431.json`，JSON Pointer `/special_element_type/desc`）。该词组是造成侧秽盾削减效率的
 自然语言变体，本规范将其归入 `MiasmicShieldReductionRate`，不为“秽息净化效率”建立第二个乘区。它与
 秽盾被打破时触发的 `Miasmic Shield Purification` 不是同一概念。
 
@@ -174,8 +176,8 @@ PascalCase 名称都是 core 根据攻略公式和语义边界建立的规范化
 当前不为其增加公开 core 标识或公式输入。
 
 Nanoka 原始角色技能数据中的 `ether_purify` 是数据层内部数值字段，见
-[英文数据](../../../packages/data/raw/nanoka/3.1/en/character/1011.json#L1306)与
-[中文数据](../../../packages/data/raw/nanoka/3.1/zh/character/1011.json#L1306)。该字段没有独立格式声明，
+英文数据（本地观察：`zzz/3.1/en/character/1011.json`，JSON Pointer `/skill/assist/description/4/param/0/param/1011013/ether_purify`）与
+中文数据（本地观察：`zzz/3.1/zh/character/1011.json`，JSON Pointer `/skill/assist/description/4/param/0/param/1011013/ether_purify`）。该字段没有独立格式声明，
 还可能随同一技能的不同展示参数重复出现，不能直接作为 `BaseMiasmicShieldReductionFactorInput`。
 其单位和记录语义由 core 之外的上游契约解释；core 不公开 `etherPurify` 输入。
 

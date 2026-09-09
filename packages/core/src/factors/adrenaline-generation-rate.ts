@@ -24,7 +24,8 @@ export const adrenalineGenerationRateFactor: Factor<AdrenalineGenerationRateFact
 
       let totalAdrenalineGenerationRate = 0
 
-      for (const input of inputs) {
+      for (let index = 0; index < inputs.length; index += 1) {
+        const input = inputs[index]
         assertFiniteNumber(input, "Adrenaline generation rate factor input")
 
         totalAdrenalineGenerationRate += input

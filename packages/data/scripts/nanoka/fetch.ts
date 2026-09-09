@@ -100,6 +100,7 @@ export async function fetchNanokaData(options: {
   )
 
   for (const entity of entities) {
+    budget.reserveAdditionalAssets(1)
     const indexBytes = await httpClient.fetchAsset(
       buildEntityIndexUrl(policy, version, entity),
     )

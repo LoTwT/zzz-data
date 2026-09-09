@@ -3,6 +3,63 @@ import { NanokaHttpClient } from "../scripts/nanoka/http.ts"
 import { loadSourcePolicy } from "../scripts/nanoka/policy.ts"
 
 describe("Nanoka HTTP client", () => {
+  it.each([false, true])(
+    "accepts exactly the byte limit with Content-Length present: %s",
+    async (hasContentLength) => {
+      const policy = await testPolicy()
+      policy.requestPolicy.maximumResponseBytes = 3
+      const fetchImplementation = vi.fn<typeof fetch>(
+        async () =>
+          new Response(
+            new ReadableStream<Uint8Array>({
+              start(controller) {
+                controller.enqueue(new Uint8Array([1]))
+                controller.enqueue(new Uint8Array([2, 3]))
+                controller.close()
+              },
+            }),
+            { headers: hasContentLength ? { "Content-Length": "3" } : {} },
+          ),
+      )
+      const client = new NanokaHttpClient(policy, {
+        fetchImplementation,
+        sleep: async () => {},
+      })
+      await expect(
+        client.fetchAsset(new URL("https://static.nanoka.cc/manifest.json")),
+      ).resolves.toEqual(new Uint8Array([1, 2, 3]))
+      expect(fetchImplementation).toHaveBeenCalledTimes(1)
+    },
+  )
+
+  it("cancels a response whose declared length exceeds the byte limit before reading", async () => {
+    const policy = await testPolicy()
+    policy.requestPolicy.maximumResponseBytes = 3
+    const cancel = vi.fn()
+    const fetchImplementation = vi.fn<typeof fetch>(
+      async () =>
+        new Response(
+          new ReadableStream<Uint8Array>({
+            start(controller) {
+              controller.enqueue(new Uint8Array([1, 2]))
+              controller.close()
+            },
+            cancel,
+          }),
+          { headers: { "Content-Length": "9" } },
+        ),
+    )
+    const client = new NanokaHttpClient(policy, {
+      fetchImplementation,
+      sleep: async () => {},
+    })
+    await expect(
+      client.fetchAsset(new URL("https://static.nanoka.cc/manifest.json")),
+    ).rejects.toThrow("响应体超过大小上限")
+    expect(cancel).toHaveBeenCalledTimes(1)
+    expect(fetchImplementation).toHaveBeenCalledTimes(1)
+  })
+
   it("fetches raw bytes with the required request policy", async () => {
     const policy = await testPolicy()
     const fetchImplementation = vi.fn<typeof fetch>(async (_url, options) => {

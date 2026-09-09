@@ -9,6 +9,28 @@ import {
 } from "../src/index.ts"
 
 describe("adrenalineGenerationRateFactor", () => {
+  it("reads indexed contributions instead of a custom iterator", () => {
+    const contributions = [0.5]
+    Object.defineProperty(contributions, Symbol.iterator, {
+      value: function* () {
+        yield 2
+      },
+    })
+    expect(adrenalineGenerationRateFactor.calculate(contributions)).toBe(1.5)
+  })
+
+  it("rejects a non-finite indexed contribution hidden by an iterator", () => {
+    const contributions = [NaN]
+    Object.defineProperty(contributions, Symbol.iterator, {
+      value: function* () {
+        yield 0
+      },
+    })
+    expect(() =>
+      adrenalineGenerationRateFactor.calculate(contributions),
+    ).toThrow(RangeError)
+  })
+
   it("exposes its public identity and types", () => {
     expectTypeOf<AdrenalineGenerationRateFactorInput>().toEqualTypeOf<
       readonly number[]
