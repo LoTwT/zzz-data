@@ -1,5 +1,7 @@
 # 异常伤害公式
 
+下文 Nanoka 资源路径及 JSON Pointer 遵循[本地观察引用约定](../../nanoka/source.md#本地观察引用)，仅用于定位既有观察，不是仓库文件链接或可复现快照。
+
 异常伤害公式按照固定顺序组合基础伤害区及十个倍率乘区，规则来源为
 [原始攻略中的异常伤害公式](../../../references/zzz-data-introduction.txt#L251)。异常伤害不采用普通暴击区，
 而是采用异常暴击区。Nanoka 3.1 的异化机制还会在原有乘区之后对整个异常伤害采用独立异化区；不适用
@@ -286,8 +288,8 @@ const baseDamage: BaseDamageFactorInput = [
 的输入与算法，因此由公开 helper 统一维护，不建立额外 `Factor` 或 `Formula`。
 
 Nanoka 3.1 游戏文本使用 `Disorder DMG Multiplier` 表示“紊乱效果的伤害倍率”，见
-[英文文本](../../../../packages/data/raw/nanoka/3.1/en/character/1411.json#L2153)与
-[中文文本](../../../../packages/data/raw/nanoka/3.1/zh/character/1411.json#L2153)。公开函数名将 `DMG`
+英文文本（本地观察：`zzz/3.1/en/character/1411.json`，JSON Pointer `/talent/6/desc`）与
+中文文本（本地观察：`zzz/3.1/zh/character/1411.json`，JSON Pointer `/talent/6/desc`）。公开函数名将 `DMG`
 展开为 `Damage`，`StandardDisorderDamageMultiplier` 则是 core 为区分标准倍率与特殊效果调整建立的范围
 标识，不表示游戏文本提供了完整的同名英文词组。
 
@@ -322,10 +324,10 @@ export declare function calculateStandardDisorderDamageMultiplier(
 | `frost`     | Frost / 烈霜      | Frostbite / 霜寒  | 特殊属性，游戏文本确认其基于冰属性结算，但其紊乱倍率公式不同于冰属性 |
 
 `Auric Ink` 和 `Frost` 的游戏中英文对照分别见 Nanoka 3.1 的
-[玄墨英文数据](../../../../packages/data/raw/nanoka/3.1/en/character/1371.json#L14-L16)、
-[玄墨中文数据](../../../../packages/data/raw/nanoka/3.1/zh/character/1371.json#L14-L16)、
-[烈霜英文数据](../../../../packages/data/raw/nanoka/3.1/en/character/1091.json#L14-L16)与
-[烈霜中文数据](../../../../packages/data/raw/nanoka/3.1/zh/character/1091.json#L14-L16)。`auric_ink` 使用不含空格
+玄墨英文数据（本地观察：`zzz/3.1/en/character/1371.json`，JSON Pointer `/special_element_type`）、
+玄墨中文数据（本地观察：`zzz/3.1/zh/character/1371.json`，JSON Pointer `/special_element_type`）、
+烈霜英文数据（本地观察：`zzz/3.1/en/character/1091.json`，JSON Pointer `/special_element_type`）与
+烈霜中文数据（本地观察：`zzz/3.1/zh/character/1091.json`，JSON Pointer `/special_element_type`）。`auric_ink` 使用不含空格
 和特殊空白字符的稳定机器值，不直接复制原始数据中的富文本或空白形式。
 
 `originalAnomalyAttribute` 表示被新异常覆盖并据此结算紊乱的原异常来源属性，不是触发紊乱的新异常
@@ -426,16 +428,16 @@ const baseDamage: BaseDamageFactorInput = [
 ### 待确认：普通紊乱的风属性与凛刃边界
 
 Nanoka 3.1 已出现 `Wind Anomaly` / “风属性异常状态”，见
-[英文数据](../../../../packages/data/raw/nanoka/3.1/en/character/1541.json#L1359)与
-[中文数据](../../../../packages/data/raw/nanoka/3.1/zh/character/1541.json#L1359)。另有同路径文本明确写出目标
+英文数据（本地观察：`zzz/3.1/en/character/1541.json`，JSON Pointer `/skill/chain/description/0/desc`）与
+中文数据（本地观察：`zzz/3.1/zh/character/1541.json`，JSON Pointer `/skill/chain/description/0/desc`）。另有同路径文本明确写出目标
 处于 `Windswept` / “风化”时，被施加其他属性异常会触发 `Vortex` / “乱流”，见
-[英文数据](../../../../packages/data/raw/nanoka/3.1/en/monster/40005.json#L1006)与
-[中文数据](../../../../packages/data/raw/nanoka/3.1/zh/monster/40005.json#L1006)。当前攻略没有说明风属性异常
+英文数据（本地观察：`zzz/3.1/en/monster/40005.json`，JSON Pointer `/card_skill_desc`）与
+中文数据（本地观察：`zzz/3.1/zh/monster/40005.json`，JSON Pointer `/card_skill_desc`）。当前攻略没有说明风属性异常
 是否还参与普通紊乱，也没有提供对应的紊乱伤害倍率公式。
 
 Nanoka 3.1 还确认 `Honed Edge` / “凛刃属性”基于物理属性结算，并触发 `Assault` / “强击”与
-`Flinch` / “畏缩”，见[英文数据](../../../../packages/data/raw/nanoka/3.1/en/character/1431.json#L14-L16)与
-[中文数据](../../../../packages/data/raw/nanoka/3.1/zh/character/1431.json#L14-L16)。攻略只给出了物理属性造成
+`Flinch` / “畏缩”，见英文数据（本地观察：`zzz/3.1/en/character/1431.json`，JSON Pointer `/special_element_type`）与
+中文数据（本地观察：`zzz/3.1/zh/character/1431.json`，JSON Pointer `/special_element_type`）。攻略只给出了物理属性造成
 的畏缩公式，没有说明凛刃是否直接采用同一紊乱倍率，因此当前不能把凛刃静默映射为 `physical`。
 
 `DisorderSourceAttribute` 因此暂不包含 `wind` 或 `honed_edge`，运行时传入 `"wind"` 或 `"honed_edge"`

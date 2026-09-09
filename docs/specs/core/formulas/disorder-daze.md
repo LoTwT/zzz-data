@@ -1,12 +1,14 @@
 # 紊乱失衡值公式
 
+下文 Nanoka 资源路径及 JSON Pointer 遵循[本地观察引用约定](../../nanoka/source.md#本地观察引用)，仅用于定位既有观察，不是仓库文件链接或可复现快照。
+
 紊乱失衡值公式按照固定顺序组合基础失衡区、失衡抗性区、紊乱失衡值提升区、受到失衡值提升区和
 紊乱失衡等级区，规则来源为
 [原始攻略中的紊乱失衡值公式](../../../references/zzz-data-introduction.txt#L292-L297)。
 
 Nanoka 3.1 的同路径中英文游戏文本使用 `Disorder` 对应“紊乱”，例如
-[英文文本](../../../../packages/data/raw/nanoka/3.1/en/character/1401.json#L1965)和
-[中文文本](../../../../packages/data/raw/nanoka/3.1/zh/character/1401.json#L1965)。`DisorderDaze` 是 core
+英文文本（本地观察：`zzz/3.1/en/character/1401.json`，JSON Pointer `/passive/level/1401501/desc/0`）和
+中文文本（本地观察：`zzz/3.1/zh/character/1401.json`，JSON Pointer `/passive/level/1401501/desc/0`）。`DisorderDaze` 是 core
 将官方 `Disorder` 与 `Daze` 标识组合得到的范围名称，不表示游戏文本提供了完整的“紊乱失衡值”英文
 术语。
 

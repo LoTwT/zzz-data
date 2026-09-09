@@ -1,6 +1,9 @@
 import { describe, expect, expectTypeOf, it } from "vitest"
 import {
   calculateVirtualAgentSnapshot,
+  disorderDazeFormula,
+  DEFAULT_DAZE_TAKEN_FACTOR_INPUT,
+  DEFAULT_RESISTANCE_FACTOR_INPUT,
   type VirtualAgentContributionRecord,
   type VirtualAgentSnapshot,
 } from "../src/index.ts"
@@ -42,6 +45,42 @@ function numberFromFloat64Bits(bits: string): number {
 }
 
 describe("calculateVirtualAgentSnapshot", () => {
+  it("weights historical impact before the base daze factor clamps it", () => {
+    const snapshot = calculateVirtualAgentSnapshot([
+      createRecord({
+        effectiveAnomalyBuildup: 1,
+        level: 1,
+        finalImpact: 5_000,
+      }),
+      createRecord({ effectiveAnomalyBuildup: 3, level: 60, finalImpact: 0 }),
+    ])
+    expect(snapshot.finalImpact).toBe(1_250)
+    expect(snapshot.level).toBe(45)
+    const result = disorderDazeFormula.calculate({
+      baseDaze: [{ finalImpact: snapshot.finalImpact, dazeMultiplier: 2 }],
+      resistance: DEFAULT_RESISTANCE_FACTOR_INPUT,
+      disorderDazeDealt: snapshot.dazeDealtFactorResult,
+      dazeTaken: DEFAULT_DAZE_TAKEN_FACTOR_INPUT,
+      disorderDazeLevel: snapshot.level,
+    })
+    expect(result.factorResults.baseDaze).toBe(2_000)
+    expect(result.value).toBe(2_675)
+  })
+
+  it("uses the validated value of a record field without reading it again", () => {
+    let reads = 0
+    const record = createRecord()
+    Object.defineProperty(record, "finalAttack", {
+      enumerable: true,
+      get: () => {
+        reads += 1
+        return reads === 1 ? 1_000 : 2_000
+      },
+    })
+    expect(calculateVirtualAgentSnapshot([record]).finalAttack).toBe(1_000)
+    expect(reads).toBe(1)
+  })
+
   it("exposes its public types", () => {
     expectTypeOf<VirtualAgentContributionRecord>().toEqualTypeOf<{
       readonly effectiveAnomalyBuildup: number

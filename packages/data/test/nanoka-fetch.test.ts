@@ -31,6 +31,137 @@ afterEach(async () => {
 })
 
 describe("Nanoka fetch cache", () => {
+  it.each([1, 4])(
+    "does not request another index after using all %s asset slots",
+    async (maximumAssetsPerRun) => {
+      const policy = await testPolicy()
+      policy.fetchLimits.maximumAssetsPerRun = maximumAssetsPerRun
+      const cacheRoot = await temporaryDirectory()
+      const fetchImplementation = vi.fn<typeof fetch>(async (input) =>
+        jsonResponse(
+          bytes(
+            new URL(String(input)).pathname.endsWith("/character.json")
+              ? '{"1":{}}'
+              : "{}",
+          ),
+        ),
+      )
+      await expect(
+        fetchNanokaData({
+          policy,
+          httpClient: new NanokaHttpClient(policy, {
+            fetchImplementation,
+            sleep: async () => {},
+          }),
+          upstreamManifestBytes: bytes(JSON.stringify(manifest)),
+          upstreamManifest: manifest,
+          version: "3.0",
+          entities: ["character", "equipment"],
+          cacheRoot,
+        }),
+      ).rejects.toThrow(`本次抓取资源数量超过上限 ${maximumAssetsPerRun}`)
+      expect(fetchImplementation).toHaveBeenCalledTimes(maximumAssetsPerRun - 1)
+      await expect(
+        stat(join(cacheRoot, "3.0", "equipment.json")),
+      ).rejects.toMatchObject({ code: "ENOENT" })
+      if (maximumAssetsPerRun === 4) {
+        expect(
+          await readFile(join(cacheRoot, "3.0", "character.json"), "utf8"),
+        ).toBe('{"1":{}}')
+      }
+    },
+  )
+
+  it.each([
+    ["{}", "索引不能为空"],
+    ['{"01":{}}', "非法实体 ID"],
+    ['{"1":null}', "必须是普通对象"],
+    ['{"1":[]}', "必须是普通对象"],
+  ])(
+    "rejects invalid index %s before requesting details or publishing it",
+    async (indexJson, message) => {
+      const policy = await testPolicy()
+      const cacheRoot = await temporaryDirectory()
+      const fetchImplementation = vi.fn<typeof fetch>(async () =>
+        jsonResponse(bytes(indexJson)),
+      )
+      await expect(
+        fetchNanokaData({
+          policy,
+          httpClient: new NanokaHttpClient(policy, {
+            fetchImplementation,
+            sleep: async () => {},
+          }),
+          upstreamManifestBytes: bytes(JSON.stringify(manifest)),
+          upstreamManifest: manifest,
+          version: "3.0",
+          entities: ["character"],
+          cacheRoot,
+        }),
+      ).rejects.toThrow(message)
+      expect(fetchImplementation).toHaveBeenCalledTimes(1)
+      await expect(
+        stat(join(cacheRoot, "3.0", "character.json")),
+      ).rejects.toMatchObject({ code: "ENOENT" })
+    },
+  )
+
+  it("rejects an unavailable version before making requests or writing cache files", async () => {
+    const policy = await testPolicy()
+    const cacheRoot = await temporaryDirectory()
+    const fetchImplementation = vi.fn<typeof fetch>(async () =>
+      jsonResponse(bytes('{"1":{}}')),
+    )
+    await expect(
+      fetchNanokaData({
+        policy,
+        httpClient: new NanokaHttpClient(policy, {
+          fetchImplementation,
+          sleep: async () => {},
+        }),
+        upstreamManifestBytes: bytes(JSON.stringify(manifest)),
+        upstreamManifest: manifest,
+        version: "4.0",
+        entities: ["character"],
+        cacheRoot,
+      }),
+    ).rejects.toThrow("不在 manifest available")
+    expect(fetchImplementation).not.toHaveBeenCalled()
+    expect(await readdir(cacheRoot)).toEqual([])
+  })
+
+  it("deduplicates entity selections and processes them in registry order", async () => {
+    const policy = await testPolicy()
+    const cacheRoot = await temporaryDirectory()
+    const requestedIndexes: string[] = []
+    const client = new NanokaHttpClient(policy, {
+      fetchImplementation: async (input) => {
+        const path = new URL(String(input)).pathname
+        if (/\/zzz\/3\.0\/(character|equipment)\.json$/u.test(path)) {
+          requestedIndexes.push(path)
+          return jsonResponse(bytes('{"1":{}}'))
+        }
+        return jsonResponse(bytes("{}"))
+      },
+      sleep: async () => {},
+    })
+    const result = await fetchNanokaData({
+      policy,
+      httpClient: client,
+      upstreamManifestBytes: bytes(JSON.stringify(manifest)),
+      upstreamManifest: manifest,
+      version: "3.0",
+      entities: ["equipment", "character", "character"],
+      cacheRoot,
+    })
+    expect(result.entities).toEqual(["character", "equipment"])
+    expect(result.fetchedAssetCount).toBe(7)
+    expect(requestedIndexes).toEqual([
+      "/zzz/3.0/character.json",
+      "/zzz/3.0/equipment.json",
+    ])
+  })
+
   it("fetches the selected resources as raw bytes without a snapshot manifest", async () => {
     const policy = await testPolicy()
     const cacheRoot = await temporaryDirectory()

@@ -24,7 +24,8 @@ export const decibelGenerationRateFactor: Factor<DecibelGenerationRateFactorInpu
 
       let totalDecibelGenerationRate = 0
 
-      for (const input of inputs) {
+      for (let index = 0; index < inputs.length; index += 1) {
+        const input = inputs[index]
         assertFiniteNumber(input, "Decibel generation rate factor input")
 
         totalDecibelGenerationRate += input

@@ -41,7 +41,13 @@ export const baseAdrenalineGenerationFactor: Factor<BaseAdrenalineGenerationFact
 
       let totalBaseAdrenalineGeneration = 0
 
-      for (const baseAdrenalineGenerationValue of baseAdrenalineGenerationValues) {
+      for (
+        let index = 0;
+        index < baseAdrenalineGenerationValues.length;
+        index += 1
+      ) {
+        const baseAdrenalineGenerationValue =
+          baseAdrenalineGenerationValues[index]
         assertNonNegativeFiniteNumber(
           baseAdrenalineGenerationValue,
           "Base adrenaline generation value",

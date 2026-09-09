@@ -178,6 +178,21 @@ describe("calculateRefringeMultiplier", () => {
     },
   )
 
+  it("rejects a sparse hole even when its prototype supplies a number", () => {
+    const refringeCoefficientIncreases: number[] = []
+    refringeCoefficientIncreases.length = 1
+    const inheritedValues = Object.assign(Object.create(Array.prototype), {
+      0: 0.2,
+    })
+    Object.setPrototypeOf(refringeCoefficientIncreases, inheritedValues)
+    expect(() =>
+      calculateRefringeMultiplier({
+        remielleAnomalyProficiency: 0,
+        refringeCoefficientIncreases,
+      }),
+    ).toThrow(TypeError)
+  })
+
   it("rejects a sparse coefficient increases array", () => {
     const refringeCoefficientIncreases = [0]
     delete refringeCoefficientIncreases[0]
